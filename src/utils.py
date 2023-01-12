@@ -33,7 +33,7 @@ def get_flaresolverr_version() -> str:
         return FLARESOLVERR_VERSION
 
 
-def get_webdriver() -> WebDriver:
+def get_webdriver(req) -> WebDriver:
     global PATCHED_DRIVER_PATH
     logging.debug('Launching web browser...')
 
@@ -46,6 +46,10 @@ def get_webdriver() -> WebDriver:
     options.add_argument('--disable-dev-shm-usage')
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
     options.add_argument('--no-zygote')
+
+    if req.proxy is not None:
+        options.add_argument('--proxy-server=%s' % req.proxy.url)
+        logging.info('proxy is set to %s' % req.proxy.url)
 
     # note: headless mode is detected (options.headless = True)
     # we launch the browser in head-full mode with the window hidden
