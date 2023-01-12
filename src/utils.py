@@ -48,7 +48,7 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
 
     if req is not None and req.proxy is not None:
-        options.add_argument('--proxy-server=%s' % req.proxy.url)
+        options.add_argument('--proxy-server=%s' % req.proxy['url'])
         logging.info('proxy is set to %s' % req.proxy.url)
 
     # note: headless mode is detected (options.headless = True)
