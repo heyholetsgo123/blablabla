@@ -89,6 +89,12 @@ def get_webdriver(req = None) -> WebDriver:
     # options.add_argument('--disable-dev-shm-usage')
     # driver = webdriver.Chrome(options=options)
 
+    if req is not None and req.proxy is not None:
+        ipUrl='https://api.ipify.org'
+        driver.get(ipUrl)
+        ipText = driver.find_element(By.XPATH, "/html/body").text
+        logging.info('used ip is %s' % ipText)
+
     return driver
 
 
