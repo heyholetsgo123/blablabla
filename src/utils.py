@@ -33,7 +33,7 @@ def get_flaresolverr_version() -> str:
         return FLARESOLVERR_VERSION
 
 
-def get_webdriver(req) -> WebDriver:
+def get_webdriver(req = None) -> WebDriver:
     global PATCHED_DRIVER_PATH
     logging.debug('Launching web browser...')
 
@@ -47,7 +47,7 @@ def get_webdriver(req) -> WebDriver:
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
     options.add_argument('--no-zygote')
 
-    if req.proxy is not None:
+    if req is not None and req.proxy is not None:
         options.add_argument('--proxy-server=%s' % req.proxy.url)
         logging.info('proxy is set to %s' % req.proxy.url)
 
