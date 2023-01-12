@@ -90,8 +90,7 @@ def get_webdriver(req = None) -> WebDriver:
     # driver = webdriver.Chrome(options=options)
 
     if req is not None and req.proxy is not None:
-        ipUrl='https://api.ipify.org'
-        driver.get(ipUrl)
+        driver.get('https://api.ipify.org')
         logging.info('used ip is %s' % driver.page_source)
 
     return driver
