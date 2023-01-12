@@ -49,7 +49,7 @@ def get_webdriver(req = None) -> WebDriver:
 
     if req is not None and req.proxy is not None:
         options.add_argument('--proxy-server=%s' % req.proxy['url'])
-        logging.info('proxy is set to %s' % req.proxy.url)
+        logging.info('proxy is set to %s' % req.proxy['url'])
 
     # note: headless mode is detected (options.headless = True)
     # we launch the browser in head-full mode with the window hidden
