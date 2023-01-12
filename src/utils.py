@@ -92,8 +92,7 @@ def get_webdriver(req = None) -> WebDriver:
     if req is not None and req.proxy is not None:
         ipUrl='https://api.ipify.org'
         driver.get(ipUrl)
-        ipText = driver.find_element_by_xpath("/html/body").text
-        logging.info('used ip is %s' % ipText)
+        logging.info('used ip is %s' % driver.page_source)
 
     return driver
 
