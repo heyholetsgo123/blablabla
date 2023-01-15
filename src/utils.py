@@ -7,6 +7,10 @@ import shutil
 from selenium.webdriver.chrome.webdriver import WebDriver
 import undetected_chromedriver as uc
 
+import re
+import zipfile
+
+
 FLARESOLVERR_VERSION = None
 CHROME_MAJOR_VERSION = None
 USER_AGENT = None
@@ -48,7 +52,72 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
 
     if req is not None and req.proxy is not None:
-        options.add_argument('--proxy-server=%s' % req.proxy['url'])
+        # options.add_argument('--proxy-server=%s' % req.proxy['url'])/
+        r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+?)', 'http://asdf:123@asdf.com:888')
+        username = re[0][0]
+        password = re[0][1]
+        host = re[0][2]
+        port = re[0][3]
+
+        manifest_json = """
+        {
+            "version": "1.0.0",
+            "manifest_version": 2,
+            "name": "Chrome Proxy",
+            "permissions": [
+                "proxy",
+                "tabs",
+                "unlimitedStorage",
+                "storage",
+                "<all_urls>",
+                "webRequest",
+                "webRequestBlocking"
+            ],
+            "background": {
+                "scripts": ["background.js"]
+            },
+            "minimum_chrome_version":"22.0.0"
+        }
+        """
+
+        background_js = """
+        var config = {
+                mode: "fixed_servers",
+                rules: {
+                singleProxy: {
+                    scheme: "http",
+                    host: "%s",
+                    port: parseInt(%s)
+                },
+                bypassList: ["localhost"]
+                }
+            };
+
+        chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+
+        function callbackFn(details) {
+            return {
+                authCredentials: {
+                    username: "%s",
+                    password: "%s"
+                }
+            };
+        }
+
+        chrome.webRequest.onAuthRequired.addListener(
+                    callbackFn,
+                    {urls: ["<all_urls>"]},
+                    ['blocking']
+        );
+        """ % (host, port, username, password)
+
+        pluginfile = 'proxy_auth_plugin.zip'
+
+        with zipfile.ZipFile(pluginfile, 'w') as zp:
+            zp.writestr("manifest.json", manifest_json)
+            zp.writestr("background.js", background_js)
+        options.add_extension(pluginfile)
+
         logging.info('proxy is set to %s' % req.proxy['url'])
 
     # note: headless mode is detected (options.headless = True)
