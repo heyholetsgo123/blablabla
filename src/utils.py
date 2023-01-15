@@ -133,6 +133,7 @@ def get_webdriver(req = None) -> WebDriver:
         print(port)
         proxy = (host, port, username, password) 
         proxy_extension = ProxyExtension(*proxy)
+        print(proxy_extension.directory)
         options.add_argument(f"--load-extension={proxy_extension.directory}")
         logging.info('proxy is set to %s' % req.proxy['url'])
 
