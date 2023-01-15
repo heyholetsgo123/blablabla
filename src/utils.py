@@ -54,72 +54,72 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
 
     if req is not None and req.proxy is not None:
-        # options.add_argument('--proxy-server=%s' % req.proxy['url'])/
-        r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
-        print(r)
-        username = r[0][0]
-        password = r[0][1]
-        host = r[0][2]
-        port = r[0][3]
+        options.add_argument('--proxy-server=%s' % req.proxy['url'])/
+        # r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
+        # print(r)
+        # username = r[0][0]
+        # password = r[0][1]
+        # host = r[0][2]
+        # port = r[0][3]
 
-        manifest_json = """
-        {
-            "version": "1.0.0",
-            "manifest_version": 2,
-            "name": "Chrome Proxy",
-            "permissions": [
-                "proxy",
-                "tabs",
-                "unlimitedStorage",
-                "storage",
-                "<all_urls>",
-                "webRequest",
-                "webRequestBlocking"
-            ],
-            "background": {
-                "scripts": ["background.js"]
-            },
-            "minimum_chrome_version":"22.0.0"
-        }
-        """
+        # manifest_json = """
+        # {
+        #     "version": "1.0.0",
+        #     "manifest_version": 2,
+        #     "name": "Chrome Proxy",
+        #     "permissions": [
+        #         "proxy",
+        #         "tabs",
+        #         "unlimitedStorage",
+        #         "storage",
+        #         "<all_urls>",
+        #         "webRequest",
+        #         "webRequestBlocking"
+        #     ],
+        #     "background": {
+        #         "scripts": ["background.js"]
+        #     },
+        #     "minimum_chrome_version":"22.0.0"
+        # }
+        # """
 
-        background_js = """
-        var config = {
-                mode: "fixed_servers",
-                rules: {
-                singleProxy: {
-                    scheme: "http",
-                    host: "%s",
-                    port: parseInt(%s)
-                },
-                bypassList: ["localhost"]
-                }
-            };
+        # background_js = """
+        # var config = {
+        #         mode: "fixed_servers",
+        #         rules: {
+        #         singleProxy: {
+        #             scheme: "http",
+        #             host: "%s",
+        #             port: parseInt(%s)
+        #         },
+        #         bypassList: ["localhost"]
+        #         }
+        #     };
 
-        chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+        # chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
 
-        function callbackFn(details) {
-            return {
-                authCredentials: {
-                    username: "%s",
-                    password: "%s"
-                }
-            };
-        }
+        # function callbackFn(details) {
+        #     return {
+        #         authCredentials: {
+        #             username: "%s",
+        #             password: "%s"
+        #         }
+        #     };
+        # }
 
-        chrome.webRequest.onAuthRequired.addListener(
-                    callbackFn,
-                    {urls: ["<all_urls>"]},
-                    ['blocking']
-        );
-        """ % (host, port, username, password)
+        # chrome.webRequest.onAuthRequired.addListener(
+        #             callbackFn,
+        #             {urls: ["<all_urls>"]},
+        #             ['blocking']
+        # );
+        # """ % (host, port, username, password)
 
-        pluginfile = 'proxy_auth_plugin.zip'
+        # pluginfile = 'proxy_auth_plugin.zip'
 
-        with zipfile.ZipFile(pluginfile, 'w') as zp:
-            zp.writestr("manifest.json", manifest_json)
-            zp.writestr("background.js", background_js)
-        options.add_extension(pluginfile)
+        # with zipfile.ZipFile(pluginfile, 'w') as zp:
+        #     zp.writestr("manifest.json", manifest_json)
+        #     zp.writestr("background.js", background_js)
+        # options.add_extension(pluginfile)
 
         logging.info('proxy is set to %s' % req.proxy['url'])
 
