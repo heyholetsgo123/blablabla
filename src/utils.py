@@ -54,6 +54,7 @@ def get_webdriver(req = None) -> WebDriver:
     if req is not None and req.proxy is not None:
         # options.add_argument('--proxy-server=%s' % req.proxy['url'])/
         r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+?)', 'http://asdf:123@asdf.com:888')
+        print(r)
         username = re[0][0]
         password = re[0][1]
         host = re[0][2]
