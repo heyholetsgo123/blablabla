@@ -4,9 +4,9 @@ import os
 import re
 import shutil
 
-# from selenium.webdriver.chrome.webdriver import WebDriver
-from seleniumwire.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 
+from seleniumwire.undetected_chromedriver.v2 import Chrome
 import undetected_chromedriver as uc
 
 import re
@@ -145,7 +145,7 @@ def get_webdriver(req = None) -> WebDriver:
 
     # downloads and patches the chromedriver
     # if we don't set driver_executable_path it downloads, patches, and deletes the driver each time
-    driver = uc.Chrome(options=options, driver_executable_path=driver_exe_path, version_main=version_main,
+    driver = Chrome(options=options, driver_executable_path=driver_exe_path, version_main=version_main,
                        windows_headless=windows_headless)
 
     # save the patched driver to avoid re-downloads
