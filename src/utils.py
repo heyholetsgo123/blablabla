@@ -124,14 +124,13 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
 
     if req is not None and req.proxy is not None:
-        options.add_argument('--proxy-server=%s' % req.proxy['url'])
         r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
         print(r)
         username = r[0][0]
         password = r[0][1]
         host = r[0][2]
         port = int(r[0][3])
-
+        print(port)
         proxy = (host, port, username, password) 
         proxy_extension = ProxyExtension(*proxy)
         options.add_argument(f"--load-extension={proxy_extension.directory}")
