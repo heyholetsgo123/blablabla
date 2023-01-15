@@ -41,7 +41,7 @@ class ProxyExtension:
             singleProxy: {
                 scheme: "http",
                 host: "%s",
-                port: %d
+                port: %s
             },
             bypassList: ["localhost"]
         }
@@ -129,7 +129,7 @@ def get_webdriver(req = None) -> WebDriver:
         username = r[0][0]
         password = r[0][1]
         host = r[0][2]
-        port = int(r[0][3])
+        port = r[0][3]
         print(port)
         proxy = (host, port, username, password) 
         proxy_extension = ProxyExtension(*proxy)
