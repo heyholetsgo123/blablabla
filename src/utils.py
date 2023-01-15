@@ -170,7 +170,7 @@ def get_webdriver(req = None) -> WebDriver:
 
 
 def get_chrome_exe_path() -> str:
-    return uc.find_chrome_executable()
+    return ''#uc.find_chrome_executable()
 
 
 def get_chrome_major_version() -> str:
