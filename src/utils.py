@@ -54,7 +54,7 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
 
     if req is not None and req.proxy is not None:
-        options.add_argument('--proxy-server=%s' % req.proxy['url'])/
+        options.add_argument('--proxy-server=%s' % req.proxy['url'])
         # r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
         # print(r)
         # username = r[0][0]
