@@ -55,10 +55,10 @@ def get_webdriver(req = None) -> WebDriver:
         # options.add_argument('--proxy-server=%s' % req.proxy['url'])/
         r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
         print(r)
-        username = re[0][0]
-        password = re[0][1]
-        host = re[0][2]
-        port = re[0][3]
+        username = r[0][0]
+        password = r[0][1]
+        host = r[0][2]
+        port = r[0][3]
 
         manifest_json = """
         {
