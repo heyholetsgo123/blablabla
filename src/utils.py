@@ -4,7 +4,9 @@ import os
 import re
 import shutil
 
-from selenium.webdriver.chrome.webdriver import WebDriver
+# from selenium.webdriver.chrome.webdriver import WebDriver
+from seleniumwire.webdriver.chrome.webdriver import WebDriver
+
 import undetected_chromedriver as uc
 
 import re
