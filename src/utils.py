@@ -133,7 +133,7 @@ def get_webdriver(req = None) -> WebDriver:
     
     # userAgent = user_agent_rotator.get_random_user_agent()
     #working - userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
-    userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 RuxitSynthetic/1.1'
+    userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0'
     options.add_argument('--user-agent="' + userAgent + '"')
     print(userAgent)
 
