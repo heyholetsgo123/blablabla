@@ -130,8 +130,10 @@ def get_webdriver(req = None) -> WebDriver:
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
     options.add_argument('--no-zygote')
     
-    options.add_argument('--user-agent="' + user_agent_rotator.get_random_user_agent() + '"')
-
+    userAgent = user_agent_rotator.get_random_user_agent()
+    options.add_argument('--user-agent="' + userAgent + '"')
+    print(userAgent)
+    
     if req is not None and req.proxy is not None:
         r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
         print(r)
