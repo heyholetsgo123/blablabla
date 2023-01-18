@@ -131,8 +131,8 @@ def get_webdriver(req = None) -> WebDriver:
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
     options.add_argument('--no-zygote')
     
-    userAgent = user_agent_rotator.get_random_user_agent()
-    # userAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 RuxitSynthetic/1.0 v3755487567 t3984374008602804876 athfa3c3975 altpub cvcv=2 smf=0'
+    # userAgent = user_agent_rotator.get_random_user_agent()
+    userAgent = 'Mozilla/5.0 (Linux; Android 8.1.0; Redmi Note 5 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.76 Mobile Safari/537.36'
     options.add_argument('--user-agent="' + userAgent + '"')
     print(userAgent)
 
