@@ -132,7 +132,7 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--no-zygote')
     
     # userAgent = user_agent_rotator.get_random_user_agent()
-    userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
+    userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36 RuxitSynthetic/1.0 v6408991879711309903 t6205049005192687891'
     options.add_argument('--user-agent="' + userAgent + '"')
     print(userAgent)
 
