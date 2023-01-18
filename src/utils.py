@@ -122,7 +122,7 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--disable-dev-shm-usage')
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
     options.add_argument('--no-zygote')
-    options.add_argument('--user-agent="Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 640 XL LTE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Mobile Safari/537.36 Edge/12.10166"')
+    options.add_argument('--user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 RuxitSynthetic/1.0 v3755487567 t3984374008602804876 athfa3c3975 altpub cvcv=2 smf=0"')
 
     if req is not None and req.proxy is not None:
         r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', req.proxy['url'])
