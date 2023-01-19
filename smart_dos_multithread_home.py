@@ -75,7 +75,7 @@ def solveChanellnge(url):
 				cookiesStr = cookiesStr + cookie['name']+'='+cookie['value']+'; '
 			cookiesStr = cookiesStr[:-2]
 			# print('got cookies:')
-			# print(cookiesStr)
+			print(userAgent)
 
 			return cookiesStr, userAgent, proxies
 		except Exception as err:
