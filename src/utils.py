@@ -136,7 +136,7 @@ def get_webdriver(req = None) -> WebDriver:
     userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(100,109)) + '.', userAgent)
     userAgent = userAgent.replace('537.36', str(random.randint(400,700)) +'.'+ str(random.randint(30,40)))
     #working - userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
-    #userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.37 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
+    userAgent = 'Mozilla/5.0 (Linux; Android 10; HLK-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36 OPR/66.1.3445.62337'
     
     options.add_argument('--user-agent="' + userAgent + '"')
     print(userAgent)
