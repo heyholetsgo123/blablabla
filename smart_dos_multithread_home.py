@@ -87,7 +87,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl
+			url = baseUrl + '/crypto-news'
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
