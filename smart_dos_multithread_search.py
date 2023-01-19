@@ -16,7 +16,7 @@ PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:PORT'
 
 attackList = [
-'https://coinspot.nl/fr/',
+'https://coinspot.nl/fr',
 ]
 
 def checkIp(proxies):
