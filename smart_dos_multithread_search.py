@@ -17,11 +17,6 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:POR
 
 attackList = [
 'https://coinspot.nl/fr/',
-'https://actufinance.fr',
-'https://kryptoszene.de',
-'https://www.finaria.it',
-'https://tradingplatforms.com',
-'https://cryptonaute.fr',
 ]
 
 def checkIp(proxies):
