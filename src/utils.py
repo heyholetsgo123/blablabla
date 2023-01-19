@@ -10,6 +10,7 @@ import undetected_chromedriver as uc
 
 import re
 import zipfile
+import random
 
 import shutil
 import tempfile
@@ -18,7 +19,7 @@ from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
 
 software_names = [SoftwareName.CHROME.value]
-operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.CHROMEOS.value]   
+operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.CHROMEOS.value, OperatingSystem.MAC_OS_X.value]   
 
 user_agent_rotator = UserAgent(software_names=software_names, operating_systems=operating_systems, limit=100)
 
@@ -132,7 +133,7 @@ def get_webdriver(req = None) -> WebDriver:
     # options.add_argument('--no-zygote')
     
     userAgent = user_agent_rotator.get_random_user_agent()
-    userAgent = re.sub('Chrome\/.+?\.', 'Chrome/100.', userAgent)
+    userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(100,109)) + '.', userAgent)
     #working - userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
     #userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.37 RuxitSynthetic/1.0 v4383360167508159838 t8052286838287810618'
     
