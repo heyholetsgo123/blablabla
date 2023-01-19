@@ -258,10 +258,6 @@ def extract_version_folder() -> str:
 
 
 def get_user_agent(driver=None) -> str:
-    global USER_AGENT
-    if USER_AGENT is not None:
-        return USER_AGENT
-
     try:
         if driver is None:
             driver = get_webdriver()
