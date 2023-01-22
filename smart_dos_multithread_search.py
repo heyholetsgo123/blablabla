@@ -18,7 +18,8 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@uk.dc.smartproxy.com:PORT
 attackList = [
 # 'https://coinspot.nl/fr',
 # 'https://cryptonaute.fr',
-'https://www.finaria.it'
+# 'https://www.finaria.it',
+'https://tradingplatforms.com'
 ]
 
 def checkIp(proxies):
