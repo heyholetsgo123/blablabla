@@ -19,7 +19,7 @@ from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
 
 software_names = [SoftwareName.CHROME.value]
-operating_systems = [OperatingSystem.LINUX.value]   
+operating_systems = [OperatingSystem.ANDROID.value]   
 
 user_agent_rotator = UserAgent(software_names=software_names, operating_systems=operating_systems, limit=100)
 
@@ -124,13 +124,13 @@ def get_webdriver(req = None) -> WebDriver:
 
     # undetected_chromedriver
     options = uc.ChromeOptions()
-    options.add_argument('--no-sandbox')
+    # options.add_argument('--no-sandbox')
     options.add_argument('--window-size=1920,1080')
     # todo: this param shows a warning in chrome head-full
-    options.add_argument('--disable-setuid-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    # options.add_argument('--disable-setuid-sandbox')
+    # options.add_argument('--disable-dev-shm-usage')
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
-    options.add_argument('--no-zygote')
+    # options.add_argument('--no-zygote')
     
     userAgent = user_agent_rotator.get_random_user_agent()
     userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(100,109)) + '.', userAgent)
