@@ -17,7 +17,7 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:POR
 
 attackList = [
 # 'https://coinspot.nl/fr',
-'https://cryptonaute.fr',
+# 'https://cryptonaute.fr',
 'https://www.finaria.it'
 ]
 
