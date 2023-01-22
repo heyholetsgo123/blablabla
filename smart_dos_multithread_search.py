@@ -24,7 +24,12 @@ attackList = [
 
 def checkIp(proxies):
 	ipUrl='https://api.ipify.org'
-	print(requests.get(ipUrl, proxies=proxies).content)
+	print("request:", requests.get(ipUrl, proxies=proxies).content)
+
+	data = {"cmd": "request.get",
+		"url": ipUrl,  
+		}
+	print('flairsolver:', requests.post(flareSolverUrl, json=data).content)
 	# input()
 
 
@@ -34,7 +39,9 @@ def checkmyHeaders():
 			"url": url,
 			}
 	resStr = requests.post(flareSolverUrl, json=data).content
-	print(resStr)
+	print('falirsolver headers:', resStr, '\n\n')
+	
+	print("request headers:", requests.get(url).content, '\n\n')
 	input()
 
 def changeProxies():
@@ -125,6 +132,8 @@ def attackAll():
 
 
 flareSolverUrl = 'http://localhost:8191/v1'
+
+checkmyHeaders()
 
 for i in range(1):
 	for url in attackList:
