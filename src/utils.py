@@ -130,7 +130,7 @@ def get_webdriver(req = None) -> WebDriver:
     options.add_argument('--disable-setuid-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     # this option removes the zygote sandbox (it seems that the resolution is a bit faster)
-    # options.add_argument('--no-zygote')
+    options.add_argument('--no-zygote')
     
     userAgent = user_agent_rotator.get_random_user_agent()
     userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(100,109)) + '.', userAgent)
