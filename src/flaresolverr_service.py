@@ -229,8 +229,13 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
 
     if challenge_found:
         while True:
-            if len(driver.find_elements(By.CLASS_NAME, 'mark')) > 0:
+            try:
+                driver.switch_to.frame(driver.find_element_by_xpath('//*[@title="Widget containing checkbox for hCaptcha security challenge"]').click())
                 driver.find_element_by_class_name('mark').click()
+                driver.switch_to.default_content()
+            except Exception as e: 
+                print(e)
+            
 
             try:
                 # wait until the title changes
