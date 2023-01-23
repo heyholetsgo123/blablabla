@@ -172,6 +172,7 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
         driver = utils.get_webdriver(req)
         return func_timeout(timeout, _evil_logic, (req, driver, method))
     except FunctionTimedOut:
+        driver.save_screenshot('ss.png')
         raise Exception(f'Error solving the challenge. Timeout after {timeout} seconds.')
     except Exception as e:
         raise Exception('Error solving the challenge. ' + str(e))
