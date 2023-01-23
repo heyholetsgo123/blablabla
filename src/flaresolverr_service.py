@@ -229,7 +229,7 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
 
     if challenge_found:
         while True:
-            if len(driver.find_elements_by_class_name('mark')) > 0:
+            if len(driver.find_elements(By.CLASS_NAME, 'mark')) > 0:
                 driver.find_element_by_class_name('mark').click()
 
             try:
