@@ -237,6 +237,13 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
             finally:
                 driver.switch_to.default_content()
             
+            try:
+                driver.switch_to.frame(driver.find_element(By.XPATH, '//*[contains(@title, "Widget containing")]'))
+                driver.find_element(By.XPATH, '//*[@class="mark"]').click()
+            except Exception as e: 
+                print(e)
+            finally:
+                driver.switch_to.default_content()
 
             try:
                 # wait until the title changes
