@@ -91,7 +91,6 @@ class ProxyExtension:
         return self._dir
 
 
-
 FLARESOLVERR_VERSION = None
 CHROME_MAJOR_VERSION = None
 USER_AGENT = None
@@ -153,6 +152,9 @@ def get_webdriver(req = None) -> WebDriver:
         print(proxy_extension.directory)
         options.add_argument(f"--load-extension={proxy_extension.directory}")
         logging.info('proxy is set to %s' % req.proxy['url'])
+
+    # Captcha addon
+    options.add_argument(f"--load-extension=/root/blablabla/capExt")
 
     # note: headless mode is detected (options.headless = True)
     # we launch the browser in head-full mode with the window hidden

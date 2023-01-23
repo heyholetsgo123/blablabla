@@ -1,0 +1,40 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "assets/images/icon_128.png",
+         "32": "assets/images/icon_32.png"
+      },
+      "default_popup": "popup/popup.html",
+      "default_title": "hCAPTCHA solver: auto captcha bypass"
+   },
+   "background": {
+      "service_worker": "service_worker.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "content/style.css" ],
+      "js": [ "vendor/jquery/3.5.1/jquery.min.js", "common/config.js", "content/core_helpers.js", "content/script.js", "content/captcha/hcaptcha/processor.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+   },
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "128": "assets/images/icon_128.png",
+      "32": "assets/images/icon_32.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAll/1yJywqMN/77OcyFJWdIyyy2qCiLpRToEBzs79zM1x9ggNoBqUgbnWQ1fv1DCzfsjdGekZ4HNQq16DvLWONFEaN4THH4B9yrHFCQSUV94fAZXJ4EF/CEpJE+u4NudHiWnOQLtfkHg+gQPHJoeM9E/4BWy41F3NyfXtQ1a804iT1EHrF5qcj/zUi9QAEc6P6uM8e0Y4lHb3t8JX8r3ipsGAMop5LS6LBk5QQnoH9jMbRvVsvo88LEsXbmrgDHcP66TVZ2b3JG4vLGiV8sXWZqWctENFBQhpX410nHurbkVbk1VNxfL1S+l2cpJiOG3bYlo6xhJTfEx5xsGNkOnJ1wIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_extName__",
+   "permissions": [ "storage" ],
+   "short_name": "__MSG_extShortName__",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0.0",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "assets/images/*", "content/*" ]
+   } ]
+}
