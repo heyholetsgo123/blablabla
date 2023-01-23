@@ -230,7 +230,7 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
     if challenge_found:
         while True:
             try:
-                driver.switch_to.frame(driver.find_elements_by_tag_name('iframe')[0])
+                driver.switch_to.frame(driver.find_element(By.XPATH, '//*[contains(@title, "Widget containing")]'))
                 driver.find_element(By.XPATH, '//*[@class="mark"]').click()
                 driver.switch_to.default_content()
             except Exception as e: 
