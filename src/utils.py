@@ -150,11 +150,9 @@ def get_webdriver(req = None) -> WebDriver:
         proxy = (host, port, username, password) 
         proxy_extension = ProxyExtension(*proxy)
         print(proxy_extension.directory)
-        options.add_argument(f"--load-extension={proxy_extension.directory}")
+        options.add_argument(f"--load-extension={proxy_extension.directory},/root/blablabla/capExt")
         logging.info('proxy is set to %s' % req.proxy['url'])
 
-    # Captcha addon
-    # options.add_argument(f"--load-extension=/root/blablabla/capExt")
 
     # note: headless mode is detected (options.headless = True)
     # we launch the browser in head-full mode with the window hidden
