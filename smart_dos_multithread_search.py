@@ -133,7 +133,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-checkmyHeaders()
+# checkmyHeaders()
 
 for i in range(5):
 	for url in attackList:
