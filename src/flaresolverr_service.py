@@ -230,7 +230,7 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
     if challenge_found:
         while True:
             try:
-                driver.switch_to.frame(driver.find_element(By.XPATH, '//*[@title="Widget containing a Cloudflare security challenge"]'))
+                driver.switch_to.frame(driver.find_element(By.XPATH, '//*[starts-with(title, "Widget containing a")]'))
                 driver.find_element(By.XPATH, '//*[@class="mark"]').click()
                 driver.switch_to.default_content()
             except Exception as e: 
