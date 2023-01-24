@@ -48,7 +48,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(10001,32048)
+	PORT=random.randrange(20001,32048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
