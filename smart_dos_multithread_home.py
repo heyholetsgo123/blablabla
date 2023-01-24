@@ -61,7 +61,7 @@ def solveChanellnge(url):
 			data = {"cmd": "request.get",
 					"url": url,
 					"returnOnlyCookies": True,
-					'proxy': {'url': PROXY_URL},
+					# 'proxy': {'url': PROXY_URL},
 					"maxTimeout": 30000  
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
@@ -108,7 +108,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			# checkIp()
 			print(proxies, headers)
-			print(requests.get('http://www.xhaus.com/headers', proxies=proxies))
+			print(requests.get('http://www.xhaus.com/headers').content)
 			
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
