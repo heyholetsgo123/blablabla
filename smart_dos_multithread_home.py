@@ -7,6 +7,13 @@ import time
 import grequests
 import requests
 
+
+def prepare_cookies(self, cookies):
+	pass
+
+grequests.models.PreparedRequest.prepare_cookies = prepare_cookies
+requests.models.PreparedRequest.prepare_cookies = prepare_cookies
+
 # printing lowercase
 letters = string.ascii_lowercase
 
