@@ -195,7 +195,7 @@ def get_webdriver(req = None) -> WebDriver:
     if req is not None and req.proxy is not None:
         driver.get('https://api.ipify.org')
         logging.info('used ip is %s' % driver.page_source)
-        driver.get('https://www.whatismybrowser.com/detect/what-http-headers-is-my-browser-sending')
+        driver.get('https://www.lammertbies.nl/comm/info/browser-header-checker')
         logging.info('used headers is %s' % driver.page_source)
         
 
