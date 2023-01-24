@@ -108,7 +108,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			# checkIp()
 			print(proxies, headers)
-			print(requests.get('http://www.xhaus.com/headers').content)
+			print(requests.get('http://www.xhaus.com/headers', headers=headers).content)
 			
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
