@@ -19,7 +19,8 @@ attackList = [
 # 'https://coinspot.nl/fr',
 # 'https://cryptonaute.fr',
 # 'https://www.finaria.it',
-'https://icowatchlist.com',
+# 'https://icowatchlist.com',
+'https://coincierge.de',
 # 'https://tradingplatforms.com'
 ]
 
