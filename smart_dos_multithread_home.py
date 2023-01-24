@@ -95,6 +95,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			url = baseUrl #+ '/' + ''.join(random.choice(letters) for i in range(10)) 
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
+			print(cookiesStr)
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Encoding': 'gzip, deflate',
