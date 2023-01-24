@@ -13,7 +13,7 @@ letters = string.ascii_lowercase
 PORT=10000
 PROXY_USER = 'spcmp28zj1' 
 PROXY_PASS = '123123123'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
 
 attackList = [
 'https://www.business2community.com',
@@ -39,7 +39,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(10001,22048)
+	PORT=random.randrange(30001,32048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
