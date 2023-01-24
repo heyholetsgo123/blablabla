@@ -112,7 +112,6 @@ def attackUrlCF(baseUrl, threadNumber):
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			isClear = True
 			for r in res:
-				print(r.content)
 				if str(r.status_code) in ['502', '504']:					
 					isClear = False
 			if isClear:
