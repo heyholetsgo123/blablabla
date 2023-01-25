@@ -124,7 +124,7 @@ def attackUrlCF(baseUrl, threadNum):
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(threadNum, baseUrl , res)
-			print(res[0].content)
+			# print(res[0].content)
 			# print(res[0].content)
 			if str(res[0].status_code) in ['503', '403', '429']:
 				print('resolsing chalennge')
