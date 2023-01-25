@@ -62,7 +62,7 @@ def solveChanellnge(url):
 			data = {"cmd": "request.get",
 					"url": url,
 					"returnOnlyCookies": True,
-					# 'proxy': {'url': PROXY_URL},
+					'proxy': {'url': PROXY_URL},
 					"maxTimeout": 30000  
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
