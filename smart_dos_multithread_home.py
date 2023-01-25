@@ -8,11 +8,6 @@ import grequests
 import requests
 import http.cookiejar
 
-def prepare_cookies(self, cookies):
-	pass
-
-requests.models.PreparedRequest.prepare_cookies = prepare_cookies
-
 # printing lowercase
 letters = string.ascii_lowercase
 
