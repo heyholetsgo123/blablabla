@@ -104,6 +104,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			'Accept-Encoding': 'gzip, deflate',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',	
 			'User-Agent': userAgent,
+			'Referer': 'https://www.business2community.com/',
 			#'Cookie': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
