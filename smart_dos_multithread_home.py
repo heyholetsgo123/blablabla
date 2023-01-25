@@ -85,7 +85,7 @@ def solveChanellnge(url):
 			cookiesDict = {}
 			for cookie in cookies:
 				cookiesStr = cookiesStr + cookie['name']+'='+cookie['value']+'; '
-				cookiesDict['name'] = cookie['value']
+				cookiesDict[cookie['name']] = cookie['value']
 			cookiesStr = cookiesStr[:-2]
 			# print('got cookies:')
 			print(userAgent)
