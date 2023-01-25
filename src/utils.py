@@ -194,8 +194,8 @@ def get_webdriver(req = None) -> WebDriver:
 
     driver.get('https://api.ipify.org')
     logging.info('used ip is %s' % driver.page_source)
-    driver.get('http://httpbin.org/headers')
-    logging.info('used headers is %s' % driver.page_source)
+    # driver.get('http://httpbin.org/headers')
+    # logging.info('used headers is %s' % driver.page_source)
         
 
     return driver
