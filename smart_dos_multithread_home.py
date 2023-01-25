@@ -112,7 +112,8 @@ def attackUrlCF(baseUrl, threadNumber):
 			# checkIp()
 			print(proxies, headers, cookiesStr)
 			
-			print(requests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr).content)
+			print(grequests.map([grequests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr)])[0].content)
+			# print(requests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr).content)
 			input()
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
