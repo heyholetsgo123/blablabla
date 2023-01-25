@@ -114,6 +114,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			
 			print(requests.get('http://httpbin.org/headers', headers=headers, cookies=cookiesStr, proxies=proxies).content)
 			print(requests.get('http://httpbin.org/ip', headers=headers, cookies=cookiesStr, proxies=proxies).content)
+			print(requests.get(url, headers=headers, proxies=proxies, cookies=cookiesStr))
 			# print(requests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr).content)
 			input()
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
