@@ -142,7 +142,7 @@ flareSolverUrl = 'http://localhost:8191/v1'
 
 # checkmyHeaders()
 
-for i in range(1):
+for i in range(10):
 	for url in attackList:
 		Thread(target=attackUrlCF, args=[url]).start()
 		time.sleep(10)
