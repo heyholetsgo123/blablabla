@@ -83,7 +83,7 @@ def solveChanellnge(url):
 			status = res["solution"]["status"]
 			cookies = res["solution"]["cookies"]
 			userAgent = res["solution"]["userAgent"]
-			print(status,cookies,userAgent)
+			# print(status,cookies,userAgent)
 
 			cookiesStr=''
 			cookiesDict = {}
