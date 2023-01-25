@@ -82,13 +82,15 @@ def solveChanellnge(url):
 			# print(status,cookies,userAgent)
 
 			cookiesStr=''
+			cookiesDict = {}
 			for cookie in cookies:
 				cookiesStr = cookiesStr + cookie['name']+'='+cookie['value']+'; '
+				cookiesDict['name'] = cookie['value']
 			cookiesStr = cookiesStr[:-2]
 			# print('got cookies:')
 			print(userAgent)
 
-			return cookies, userAgent, proxies
+			return cookiesDict, userAgent, proxies
 		except Exception as err:
 			print('error in solving, trying again', err)
 
