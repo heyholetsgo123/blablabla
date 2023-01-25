@@ -111,7 +111,8 @@ def attackUrlCF(baseUrl):
 			'Upgrade-Insecure-Requests': '1',
 			}
 
-			print(requests.get('http://www.xhaus.com/headers', headers=headers).content)
+			print(grequests.map([grequests.get('http://www.xhaus.com/headers', headers=headers)])[0].content)
+			input()
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
