@@ -291,9 +291,9 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
 
     res.result = challenge_res
 
-    driver.get('https://www.business2community.com')
-    logging.info(driver.title)
-    
+    # driver.get('https://www.business2community.com')
+    # logging.info(driver.title)
+
     return res
 
 
