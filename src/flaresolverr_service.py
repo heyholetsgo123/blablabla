@@ -5,7 +5,8 @@ from urllib.parse import unquote
 
 from func_timeout import func_timeout, FunctionTimedOut
 from selenium.common import TimeoutException
-from seleniumwire.webdriver.chrome.webdriver import WebDriver
+from seleniumwire import webdriver
+# from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, staleness_of, title_is
