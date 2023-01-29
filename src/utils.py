@@ -223,12 +223,12 @@ def get_chrome_major_version() -> str:
             # Example: '104.0.5112.79'
             complete_version = extract_version_folder()
     else:
-        # chrome_path = uc.find_chrome_executable()
-        # process = os.popen(f'"{chrome_path}" --version')
+        chrome_path = uc.find_chrome_executable()
+        process = os.popen(f'"{chrome_path}" --version')
         # Example 1: 'Chromium 104.0.5112.79 Arch Linux\n'
         # Example 2: 'Google Chrome 104.0.5112.79 Arch Linux\n'
-        complete_version = '99'#process.read()
-        #process.close()
+        complete_version = process.read()
+        process.close()
 
     CHROME_MAJOR_VERSION = complete_version.split('.')[0].split(' ')[-1]
     return CHROME_MAJOR_VERSION
