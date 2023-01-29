@@ -5,8 +5,8 @@ from urllib.parse import unquote
 
 from func_timeout import func_timeout, FunctionTimedOut
 from selenium.common import TimeoutException
-from seleniumwire import webdriver as WebDriver
-# from selenium.webdriver.chrome.webdriver import WebDriver
+# from seleniumwire import webdriver as WebDriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, staleness_of, title_is
@@ -285,11 +285,12 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
     challenge_res.status = 200  # todo: fix, selenium not provides this info
     challenge_res.cookies = driver.get_cookies()
     challenge_res.userAgent = utils.get_user_agent(driver)
+
     # challenge_res.headers = driver.requests
-    print('requests len', len(driver.requests))
-    for request in driver.requests:
-        print(request.url) # <--------------- Request url
-        print(request.headers) # <----------- Request headers
+    # print('requests len', len(driver.requests))
+    # for request in driver.requests:
+    #     print(request.url) # <--------------- Request url
+    #     print(request.headers) # <----------- Request headers
 
     if not req.returnOnlyCookies:
           # todo: fix, selenium not provides this info
