@@ -7,7 +7,7 @@ import shutil
 from seleniumwire import webdriver
 # from seleniumwire.webdriver.chrome.webdriver import WebDriver
 
-import seleniumwire.undetected_chromedriver as uc
+import seleniumwire.undetected_chromedriver.v2 as uc
 #import undetected_chromedriver as uc
 
 import re
