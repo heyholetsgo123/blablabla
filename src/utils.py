@@ -4,7 +4,7 @@ import os
 import re
 import shutil
 
-# from seleniumwire import webdriver
+# from seleniumwire import webdriver as WebDriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 # import seleniumwire.undetected_chromedriver.v2 as uc
@@ -119,7 +119,7 @@ def get_flaresolverr_version() -> str:
         return FLARESOLVERR_VERSION
 
 
-def get_webdriver(req = None) -> webdriver:
+def get_webdriver(req = None) -> WebDriver:
     global PATCHED_DRIVER_PATH
     logging.debug('Launching web browser...')
 
