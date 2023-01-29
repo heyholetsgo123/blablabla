@@ -271,6 +271,7 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
         # noinspection PyBroadException
         try:
             WebDriverWait(driver, SHORT_TIMEOUT).until(staleness_of(html_element))
+            driver.refresh()
         except Exception:
             logging.debug("Timeout waiting for redirect")
 
