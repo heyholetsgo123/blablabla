@@ -15,6 +15,11 @@ from dtos import V1RequestBase, V1ResponseBase, ChallengeResolutionT, ChallengeR
     HealthResponse, STATUS_OK, STATUS_ERROR
 import utils
 
+import random
+import string
+
+letters = string.ascii_lowercase
+
 ACCESS_DENIED_TITLES = [
     # Cloudflare
     'Access denied',
@@ -171,7 +176,13 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
     driver = None
     try:
         driver = utils.get_webdriver(req)
-        return func_timeout(timeout, _evil_logic, (req, driver, method))
+        
+        while(True):
+            url = 'https://www.business2community.com/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+            req.url = url
+            retval = func_timeout(timeout, _evil_logic, (req, driver, method))
+            print(retval.status)
+
     except FunctionTimedOut:
         driver.save_screenshot('ss.png')
         raise Exception(f'Error solving the challenge. Timeout after {timeout} seconds.')
@@ -271,7 +282,6 @@ def _evil_logic(req: V1RequestBase, driver: WebDriver, method: str) -> Challenge
         # noinspection PyBroadException
         try:
             WebDriverWait(driver, SHORT_TIMEOUT).until(staleness_of(html_element))
-            driver.refresh()
         except Exception:
             logging.debug("Timeout waiting for redirect")
 
