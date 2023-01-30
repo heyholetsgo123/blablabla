@@ -176,13 +176,13 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
     driver = None
     try:
         driver = utils.get_webdriver(req)
-        
-        while(True):
-            url = 'https://www.business2community.com/?s=' + ''.join(random.choice(letters) for i in range(10)) 
-            req.url = url
-            print(url)
-            retval = func_timeout(timeout, _evil_logic, (req, driver, method))
-            print(retval.status)
+        return func_timeout(timeout, _evil_logic, (req, driver, method))
+        # while(True):
+        #     url = 'https://www.business2community.com/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+        #     req.url = url
+        #     print(url)
+        #     retval = func_timeout(timeout, _evil_logic, (req, driver, method))
+        #     print(retval.status)
             
 
     except FunctionTimedOut:
