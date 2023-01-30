@@ -180,8 +180,9 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
         while(True):
             url = 'https://www.business2community.com/?s=' + ''.join(random.choice(letters) for i in range(10)) 
             req.url = url
+            print(url)
             retval = func_timeout(timeout, _evil_logic, (req, driver, method))
-            print(url, retval.status)
+            print(retval.status)
             
 
     except FunctionTimedOut:
