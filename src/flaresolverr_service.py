@@ -181,8 +181,8 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
             url = 'https://www.business2community.com/?s=' + ''.join(random.choice(letters) for i in range(10)) 
             req.url = url
             retval = func_timeout(timeout, _evil_logic, (req, driver, method))
-            print(retval.status)
-            input()
+            print(url, retval.status)
+            
 
     except FunctionTimedOut:
         driver.save_screenshot('ss.png')
