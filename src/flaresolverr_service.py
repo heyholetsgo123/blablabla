@@ -182,6 +182,7 @@ def _resolve_challenge(req: V1RequestBase, method: str) -> ChallengeResolutionT:
             req.url = url
             retval = func_timeout(timeout, _evil_logic, (req, driver, method))
             print(retval.status)
+            input()
 
     except FunctionTimedOut:
         driver.save_screenshot('ss.png')
