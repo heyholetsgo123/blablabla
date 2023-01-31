@@ -302,6 +302,9 @@ def attackSelenium(baseUrl):
 		PATCHED_DRIVER_PATH = os.path.join(driver.patcher.data_path, driver.patcher.exe_name)
 		shutil.copy(driver.patcher.executable_path, PATCHED_DRIVER_PATH)
 
+	driver.get('https://api.ipify.org')
+	print('used ip is %s' % driver.page_source)
+
 	while True:
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
