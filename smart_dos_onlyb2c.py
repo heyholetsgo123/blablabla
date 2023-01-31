@@ -189,7 +189,7 @@ def attackSelenium(baseUrl):
 	options = uc.ChromeOptions()
 	# options.add_argument('--no-sandbox')
 	options.add_argument('--window-size=1920,1080')
-	options.add_argument('--blink-settings=imagesEnabled=false')
+	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
 	# if we are inside the Docker container, we avoid downloading the driver
 	driver_exe_path = None
