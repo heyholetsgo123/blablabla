@@ -279,7 +279,7 @@ def attackSelenium(baseUrl):
 	proxy = (host, port, username, password) 
 	proxy_extension = ProxyExtension(*proxy)
 	print(proxy_extension.directory)
-	# options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
+	options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
 	print('proxy is set to %s' % prox_url)
 
 	userAgent = user_agent_rotator.get_random_user_agent()
