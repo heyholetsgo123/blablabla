@@ -204,6 +204,7 @@ def attackSelenium(baseUrl):
 		try:
 			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 			driver.get(url)
+			print(driver.title)
 			# input()
 		except Exception as err:
 			print(err)
