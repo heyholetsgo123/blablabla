@@ -214,7 +214,7 @@ def attackSelenium(baseUrl):
 flareSolverUrl = 'http://localhost:8191/v1'
 
 
-for i in range(1):
+for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
