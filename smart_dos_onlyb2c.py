@@ -283,9 +283,10 @@ def attackSelenium(baseUrl):
 	print('proxy is set to %s' % prox_url)
 
 	userAgent = user_agent_rotator.get_random_user_agent()
+	userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(99,109)) + '.', userAgent)
 	options.add_argument('--user-agent=' + userAgent + '')
-	print('user agent is: %s', userAgent)
-	
+	print('user agent is: ', userAgent)
+
 	# if we are inside the Docker container, we avoid downloading the driver
 	driver_exe_path = None
 	version_main = None
