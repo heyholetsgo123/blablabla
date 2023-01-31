@@ -220,7 +220,8 @@ def attackSelenium(baseUrl):
 
 	while True:
 		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10))
 			driver.get(url)
 
 			html_element = driver.find_element(By.TAG_NAME, "html")
