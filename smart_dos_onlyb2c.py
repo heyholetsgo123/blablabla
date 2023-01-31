@@ -284,7 +284,8 @@ def attackSelenium(baseUrl):
 
 	userAgent = user_agent_rotator.get_random_user_agent()
 	options.add_argument('--user-agent=' + userAgent + '')
-
+	print('user agent is: %s', userAgent)
+	
 	# if we are inside the Docker container, we avoid downloading the driver
 	driver_exe_path = None
 	version_main = None
