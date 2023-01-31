@@ -263,8 +263,12 @@ def get_driver():
 	global PATCHED_DRIVER_PATH
 
 	options = uc.ChromeOptions()
-	# options.add_argument('--no-sandbox')
+	options.add_argument('--no-sandbox')
 	options.add_argument('--window-size=1920,1080')
+	# todo: this param shows a warning in chrome head-full
+	options.add_argument('--disable-setuid-sandbox')
+	options.add_argument('--disable-dev-shm-usage')
+	# options.add_argument('--no-zygote')
 	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
 
@@ -389,10 +393,7 @@ def attackSelenium(baseUrl):
 			#input()
 
 
-flareSolverUrl = 'http://localhost:8191/v1'
-
-
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
