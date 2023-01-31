@@ -331,6 +331,7 @@ def attackSelenium(baseUrl):
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,20)))
+			print(url)
 			driver.get(url)
 
 			html_element = driver.find_element(By.TAG_NAME, "html")
@@ -393,7 +394,7 @@ def attackSelenium(baseUrl):
 			#input()
 
 
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
