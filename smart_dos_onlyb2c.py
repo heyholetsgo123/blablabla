@@ -10,6 +10,7 @@ import os
 import re
 import undetected_chromedriver as uc
 import shutil
+import tempfile
 from selenium.common import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located, staleness_of, title_is
@@ -35,6 +36,74 @@ proxies = {
 attackList = [
 'https://www.business2community.com',
 ]
+
+class ProxyExtension:
+    manifest_json = """
+    {
+        "version": "1.0.0",
+        "manifest_version": 2,
+        "name": "Chrome Proxy",
+        "permissions": [
+            "proxy",
+            "tabs",
+            "unlimitedStorage",
+            "storage",
+            "<all_urls>",
+            "webRequest",
+            "webRequestBlocking"
+        ],
+        "background": {"scripts": ["background.js"]},
+        "minimum_chrome_version": "76.0.0"
+    }
+    """
+
+    background_js = """
+    var config = {
+        mode: "fixed_servers",
+        rules: {
+            singleProxy: {
+                scheme: "http",
+                host: "%s",
+                port: %s
+            },
+            bypassList: ["localhost"]
+        }
+    };
+
+    chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+
+    function callbackFn(details) {
+        return {
+            authCredentials: {
+                username: "%s",
+                password: "%s"
+            }
+        };
+    }
+
+    chrome.webRequest.onAuthRequired.addListener(
+        callbackFn,
+        { urls: ["<all_urls>"] },
+        ['blocking']
+    );
+    """
+
+    def __init__(self, host, port, user, password):
+        self._dir = os.path.normpath(tempfile.mkdtemp())
+
+        manifest_file = os.path.join(self._dir, "manifest.json")
+        with open(manifest_file, mode="w") as f:
+            f.write(self.manifest_json)
+
+        background_js = self.background_js % (host, port, user, password)
+        background_file = os.path.join(self._dir, "background.js")
+        with open(background_file, mode="w") as f:
+            f.write(background_js)
+
+    @property
+    def directory(self):
+        return self._dir
+
 
 def checkIp():
 	ipUrl='https://api.ipify.org'
@@ -191,6 +260,21 @@ def attackSelenium(baseUrl):
 	options.add_argument('--window-size=1920,1080')
 	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
+
+	# Proxy
+	prox_url, proxies = changeProxies()
+	r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', prox_url)
+	print(r)
+	username = r[0][0]
+	password = r[0][1]
+	host = r[0][2]
+	port = r[0][3]
+	proxy = (host, port, username, password) 
+	proxy_extension = ProxyExtension(*proxy)
+	print(proxy_extension.directory)
+	options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
+	print('proxy is set to %s' % prox_url)
+
 	# if we are inside the Docker container, we avoid downloading the driver
 	driver_exe_path = None
 	version_main = None
