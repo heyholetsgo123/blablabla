@@ -29,7 +29,7 @@ letters = string.ascii_lowercase
 PORT=10000
 PROXY_USER = 'spwn69j9vr' 
 PROXY_PASS = '123123123'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.dc.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
 
