@@ -274,18 +274,18 @@ def get_driver():
 
 	# ------ Proxy
 
-	prox_url, proxies = changeProxies()
-	r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', prox_url)
-	print(r)
-	username = r[0][0]
-	password = r[0][1]
-	host = r[0][2]
-	port = r[0][3]
-	proxy = (host, port, username, password) 
-	proxy_extension = ProxyExtension(*proxy)
-	print(proxy_extension.directory)
-	options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
-	print('proxy is set to %s' % prox_url)
+	# prox_url, proxies = changeProxies()
+	# r = re.findall('\/\/(.+?):(.+?)@(.+?):(.+)', prox_url)
+	# print(r)
+	# username = r[0][0]
+	# password = r[0][1]
+	# host = r[0][2]
+	# port = r[0][3]
+	# proxy = (host, port, username, password) 
+	# proxy_extension = ProxyExtension(*proxy)
+	# print(proxy_extension.directory)
+	# options.add_argument(f"--load-extension={proxy_extension.directory}") #,/root/blablabla/capExt
+	# print('proxy is set to %s' % prox_url)
 
 	userAgent = user_agent_rotator.get_random_user_agent()
 	userAgent = re.sub('Chrome\/.+?\.', 'Chrome/' + str(random.randint(99,109)) + '.', userAgent)
