@@ -330,8 +330,8 @@ def attackSelenium(baseUrl):
 	
 	while True:
 		try:
-			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(10)) 
-			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
+			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(random.randint(11,30))) 
+			# url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
 			print(url)
 			driver.get(url)
 
