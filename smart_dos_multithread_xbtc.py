@@ -139,7 +139,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for i in range(1):
+for i in range(10):
 	Thread(target=attackUrlCF, args=['https://sol-e.pumpkinapopeye.tech/l/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NzUzNDgyMjUsIm5iZiI6MTY3NTM0ODIyNSwiZXhwIjoxNjc1MzU5MDI1LCJkYXRhIjp7ImxhbmRlck5hbWUiOiJiaXRjb2RlX2FpX3YzIiwiaXBBZGRyZXNzIjoiMTY4LjEwMC4xMS4xMjQiLCJib3giOiIxMzBiZDYyZTgzMzc4N2U1OThkM2IwMmU2YzZiMTA0NCJ9fQ.tfjRXEZUfFu7iM6ct061S8Z53GxNRh_FvgEC89eceHA', i]).start()
 	time.sleep(30)
 input()
