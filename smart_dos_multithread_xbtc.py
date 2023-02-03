@@ -102,7 +102,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			# 'User-Agent': userAgent,
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Encoding': 'gzip, deflate',
-			'Cookie': cookiesStr,
+			# 'Cookie': cookiesStr,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
