@@ -113,6 +113,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(res)
+			print(res[0].content)
 			
 			if str(res[0].status_code) in ['404']:
 				print(str(threadNumber), 'moved!!!! resolsing chalennge', res[0].content)
