@@ -130,7 +130,7 @@ def attackAll():
 
 flareSolverUrl = 'http://localhost:8191/v1'
 
-for i in range(10):
+for i in range(1):
 	Thread(target=attackUrlCF, args=[sys.argv[1], i]).start()
 	time.sleep(30)
 input()
