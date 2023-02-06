@@ -35,7 +35,7 @@ PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
 
-SHORT_TIMEOUT = 10
+SHORT_TIMEOUT = 30
 
 proxies = {
    'http': PROXY_URL,
