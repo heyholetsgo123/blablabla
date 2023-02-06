@@ -116,7 +116,7 @@ class ProxyExtension:
 def my_handler(request, exception):
     print(f"exception thrown by grequests: \n{exception}")
     return request
-	
+
 def checkIp():
 	ipUrl='https://api.ipify.org'
 	print(requests.get(ipUrl, proxies=proxies).content)
@@ -458,6 +458,8 @@ def attackSelenium(baseUrl):
 			driver, userAgent, proxies = get_driver()
 
 
+attackSelenium('https://www.business2community.com/visit/immediate-connect/')
+input()
 for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
 input()
