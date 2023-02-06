@@ -425,7 +425,6 @@ def attackSelenium(baseUrl):
 				while True:
 					try:
 						sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
-						input()
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
 						# driver.find_element(By.NAME, 'firstname').send_keys('asd')
@@ -437,14 +436,12 @@ def attackSelenium(baseUrl):
 						# driver.refresh()
 					except Exception as err:
 						print(err)
-						input()
 						break
 
 					print(driver.title)
 					if driver.title == 'investing-advisor/life coach tips':
 						break
 
-			input()
 			# for i in range(200):
 			# 	input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 's')))
 			# 	input.send_keys(''.join(random.choice(letters) for i in range(random.randint(11,30))))
