@@ -412,7 +412,9 @@ def attackSelenium(baseUrl):
 
 					except TimeoutException:
 						print("Timeout waiting for selector")
+						break
 						html_element = driver.find_element(By.TAG_NAME, "html")
+						
 
 				# waits until cloudflare redirection ends
 				print("Waiting for redirect")
