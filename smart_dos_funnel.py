@@ -356,7 +356,12 @@ def sendRequest(url, proxies, userAgent, cookies):
 	for x in range(20):
 		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
+	isClear = False
+	for r in res:
+		if str(r.status_code) in ['200']:					
+			isClear = True
 	print(res)
+	return isClear
 
 def attackSelenium(baseUrl):
 
@@ -421,9 +426,11 @@ def attackSelenium(baseUrl):
 			print(driver.title)
 			# input('sendkeys')
 			if driver.title == 'Immediate Connect':
-				for i in range(4):
+				while True:
 					try:
-						sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
+						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
+						if res == False:
+							break
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
 						# driver.find_element(By.NAME, 'firstname').send_keys('asd')
