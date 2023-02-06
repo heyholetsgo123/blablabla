@@ -31,7 +31,7 @@ PORT=10000
 PROXY_USER = 'spwn69j9vr' 
 PROXY_PASS = '123123123'
 # PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
 
@@ -130,7 +130,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(30002,32048)
+	PORT=random.randrange(10002,32048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
@@ -425,7 +425,7 @@ def attackSelenium(baseUrl):
 			driver = get_driver()
 
 
-for i in range(1):
+for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
 input()
 
