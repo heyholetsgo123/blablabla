@@ -1,5 +1,5 @@
 from urllib import request
-import requests
+import grequests
 import json
 from threading import Thread, Lock
 import random
@@ -113,7 +113,10 @@ class ProxyExtension:
     def directory(self):
         return self._dir
 
-
+def my_handler(request, exception):
+    print(f"exception thrown by grequests: \n{exception}")
+    return request
+	
 def checkIp():
 	ipUrl='https://api.ipify.org'
 	print(requests.get(ipUrl, proxies=proxies).content)
@@ -324,11 +327,40 @@ def get_driver():
 	# driver.get('https://api.ipify.org')
 	# print('used ip is %s' % driver.page_source)
 
-	return driver
+	return driver, proxies, userAgent
+
+def sendRequest(url, proxies, userAgent, cookies):
+	headers={			
+			'Accept-Language': 'en-US,en;q=0.9',
+			'Accept-Encoding': 'gzip, deflate',
+			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',	
+			'User-Agent': userAgent,
+			'Connection': 'keep-alive',
+			'Upgrade-Insecure-Requests': '1',
+			}
+
+	data = {
+    "country": "HU",
+    "submission_type": "standard",
+    "firstname": "asd",
+    "lastname": "asd",
+    "email": "asd@asd.com",
+    "telephone": "123123"
+	}
+
+	cookiesDict = {}
+	for cookie in cookies:
+		cookiesDict[cookie['name']] = cookie['value']
+
+	requestsArr = []
+	for x in range(1):
+		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
+	res = grequests.map(requestsArr, exception_handler=my_handler)
+	print(res, res[0].content)
 
 def attackSelenium(baseUrl):
 
-	driver = get_driver()
+	driver, userAgent, proxies = get_driver()
 	
 	while True:
 		try:
@@ -391,18 +423,19 @@ def attackSelenium(baseUrl):
 			if driver.title == 'Immediate Connect':
 				while True:
 					try:
-						input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
-						# input.send_keys('asd')
+						sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
+						input()
+						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
-						driver.find_element(By.NAME, 'firstname').send_keys('asd')
-						driver.find_element(By.NAME, 'lastname').send_keys('asd')
-						driver.find_element(By.NAME, 'email').send_keys(''.join(random.choice(letters) for i in range(10)) + '@gmail.com')
-						driver.find_element(By.NAME, 'telephone').send_keys('79757' + str(random.randint(10000,99999)))
+						# driver.find_element(By.NAME, 'firstname').send_keys('asd')
+						# driver.find_element(By.NAME, 'lastname').send_keys('asd')
+						# driver.find_element(By.NAME, 'email').send_keys(''.join(random.choice(letters) for i in range(10)) + '@gmail.com')
+						# driver.find_element(By.NAME, 'telephone').send_keys('79757' + str(random.randint(10000,99999)))
 
-						driver.find_element(By.CLASS_NAME, 'register').click()
-						driver.refresh()
-					except:
-						print('error')
+						# driver.find_element(By.CLASS_NAME, 'register').click()
+						# driver.refresh()
+					except Exception as err:
+						print(err)
 						input()
 						break
 
@@ -422,10 +455,10 @@ def attackSelenium(baseUrl):
 			#input()
 		finally:
 			driver.close()
-			driver = get_driver()
+			driver, userAgent, proxies = get_driver()
 
 
-for i in range(5):
+for i in range(1):
 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
 input()
 
