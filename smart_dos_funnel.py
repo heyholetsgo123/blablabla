@@ -353,7 +353,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 		cookiesDict[cookie['name']] = cookie['value']
 
 	requestsArr = []
-	for x in range(20):
+	for x in range(30):
 		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
 	isClear = False
