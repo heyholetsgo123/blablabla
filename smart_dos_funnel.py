@@ -456,8 +456,8 @@ def attackSelenium(baseUrl):
 			driver, userAgent, proxies = get_driver()
 
 
-# attackSelenium('https://www.business2community.com/visit/immediate-connect/')
-# input()
+attackSelenium('https://www.business2community.com/visit/immediate-connect/')
+input()
 for i in range(5):
 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
 input()
