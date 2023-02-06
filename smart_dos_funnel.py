@@ -362,7 +362,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 			return 200
 		if str(r.status_code) in ['502', '524']:	
 			return 500
-		if str(r.status_code)[0] in ['4']:	
+		if str(r.status_code) in ['404', '503']:	
 			return 400
 	return 0
 
