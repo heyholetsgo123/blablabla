@@ -421,7 +421,7 @@ def attackSelenium(baseUrl):
 			print(driver.title)
 			# input('sendkeys')
 			if driver.title == 'Immediate Connect':
-				for i in range(20):
+				for i in range(4):
 					try:
 						sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
