@@ -360,7 +360,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 	for r in res:
 		if str(r.status_code) in ['200']:					
 			return 200
-		if str(r.status_code)[0] in ['5']:	
+		if str(r.status_code) in ['502', '524']:	
 			return 500
 		if str(r.status_code)[0] in ['4']:	
 			return 400
