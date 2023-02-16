@@ -32,7 +32,7 @@ PORT=10000
 PROXY_USER = 'spwn69j9vr' 
 PROXY_PASS = '123123123'
 # PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gb.smartproxy.com:PORT'
-PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@gate.smartproxy.com:PORT'
+PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@eu.dc.smartproxy.com:PORT'
 
 PROXY_URL= '127.0.0.1:8080'
 
@@ -134,7 +134,7 @@ def checkmyHeaders():
 	input()
 
 def changeProxies():
-	PORT=random.randrange(10002,32048)
+	PORT=random.randrange(20002,32048)
 	PROXY_URL = PROXY_URL_BASE.replace('PORT',str(PORT))
 
 	proxies = {
