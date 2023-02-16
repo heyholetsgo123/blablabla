@@ -432,7 +432,7 @@ def attackSelenium(baseUrl):
 			print(driver.title)
 			# input('sendkeys')
 			# if driver.title == 'Immediate Connect':
-			if driver.title == 'Bitcoin 360 AI':
+			if driver.title != 'investing-advisor/life coach tips':
 				while True:
 					try:
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
