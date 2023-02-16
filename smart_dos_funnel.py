@@ -345,7 +345,7 @@ def sendRequest(url, proxies, userAgent, cookies):
     "submission_type": "standard",
     "firstname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
     "lastname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
-    "email": ''.join(random.choice(letters) for i in range(random.randint(5,10))) + "@gmail.com",
+    "email": ''.join(random.choice(letters) for i in range(random.randint(5,10))),# + "@gmail.com",
     "telephone": '11111' + str(random.randint(1111,9999))
 	}
 
@@ -436,7 +436,6 @@ def attackSelenium(baseUrl):
 				while True:
 					try:
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
-						time.sleep(10)
 						print(res)
 						if res == 500 and random.randint(1,3) == 1:
 							break
