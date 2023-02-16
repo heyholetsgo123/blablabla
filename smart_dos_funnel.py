@@ -355,7 +355,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 
 	requestsArr = []
 	for x in range(1):
-		requestsArr.append(grequests.post(url, json=data, headers=headers, cookies=cookiesDict))
+		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
 	print(res)
 	for r in res:
