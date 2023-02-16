@@ -363,7 +363,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 			return 200
 		if str(r.status_code) in ['502', '524']:	
 			return 500
-		if str(r.status_code) in ['404', '503']:	
+		if str(r.status_code) in ['404', '503', '429']:	
 			return 400
 	return 0
 
@@ -438,7 +438,7 @@ def attackSelenium(baseUrl):
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
 						if res == 500 and random.randint(1,3) == 1:
 							break
-						if res == 400 or res == 429:
+						if res == 400:
 							break
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
