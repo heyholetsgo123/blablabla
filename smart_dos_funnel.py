@@ -470,7 +470,7 @@ def attackSelenium(baseUrl):
 			driver, userAgent, proxies = get_driver()
 
 
-attackSelenium('https://www.business2community.com/visit/bitcoin-360-ai')
+attackSelenium(sys.argv[1])
 input()
 # for i in range(5):
 # 	Thread(target=attackSelenium, args=['https://www.business2community.com/visit/immediate-connect/']).start()
