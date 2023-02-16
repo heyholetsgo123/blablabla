@@ -436,6 +436,7 @@ def attackSelenium(baseUrl):
 				while True:
 					try:
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
+						print(res)
 						if res == 500 and random.randint(1,3) == 1:
 							break
 						if res == 400:
