@@ -18,6 +18,7 @@ from selenium.webdriver.common.by import By
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
 from selenium.webdriver.support import expected_conditions as EC
+import sys
 
 software_names = [SoftwareName.CHROME.value]
 operating_systems = [OperatingSystem.WINDOWS.value]   
