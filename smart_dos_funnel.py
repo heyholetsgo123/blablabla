@@ -341,12 +341,12 @@ def sendRequest(url, proxies, userAgent, cookies):
 			}
 
 	data = {
-    "country": "GB",
+    "country": "NL",
     "submission_type": "standard",
     "firstname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
     "lastname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
     "email": ''.join(random.choice(letters) for i in range(random.randint(5,10))) + "@gmail.com",
-    "telephone": str(random.randint(11111,99999)) + str(random.randint(1111,9999))
+    "telephone": '11111' + str(random.randint(1111,9999))
 	}
 
 	cookiesDict = {}
@@ -354,7 +354,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 		cookiesDict[cookie['name']] = cookie['value']
 
 	requestsArr = []
-	for x in range(30):
+	for x in range(1):
 		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
 	print(res)
@@ -364,6 +364,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 		if str(r.status_code) in ['502', '524']:	
 			return 500
 		if str(r.status_code) in ['404', '503', '429']:	
+			print(r.content)
 			return 400
 	return 0
 
