@@ -345,7 +345,7 @@ def sendRequest(url, proxies, userAgent, cookies):
     "submission_type": "standard",
     "firstname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
     "lastname": ''.join(random.choice(letters) for i in range(random.randint(4,7))),
-    "email": ''.join(random.choice(letters) for i in range(random.randint(5,10))),# + "@gmail.com",
+    "email": ''.join(random.choice(letters) for i in range(random.randint(5,10))) + "@gmail.com",
     "telephone": '11111' + str(random.randint(1111,9999))
 	}
 
@@ -355,7 +355,7 @@ def sendRequest(url, proxies, userAgent, cookies):
 
 	requestsArr = []
 	for x in range(1):
-		requestsArr.append(grequests.post(url, json=data, headers=headers, proxies=proxies, cookies=cookiesDict))
+		requestsArr.append(grequests.post(url, json=data, headers=headers, cookies=cookiesDict))
 	res = grequests.map(requestsArr, exception_handler=my_handler)
 	print(res)
 	for r in res:
