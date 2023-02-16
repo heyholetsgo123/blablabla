@@ -438,7 +438,7 @@ def attackSelenium(baseUrl):
 						res = sendRequest(driver.current_url, proxies, userAgent, driver.get_cookies())
 						if res == 500 and random.randint(1,3) == 1:
 							break
-						if res == 400:
+						if res == 400 or res == 429:
 							break
 						# input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'firstname')))
 
