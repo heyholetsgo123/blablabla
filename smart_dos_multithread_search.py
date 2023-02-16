@@ -12,7 +12,7 @@ import sys
 letters = string.ascii_lowercase
 
 PORT=10000
-PROXY_USER = 'spcmp28zj1' 
+PROXY_USER = 'spwn69j9vr' 
 PROXY_PASS = '123123123'
 PROXY_URL_BASE = 'http://'+PROXY_USER+':'+PROXY_PASS+'@all.dc.smartproxy.com:PORT'
 
